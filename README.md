@@ -1,3 +1,13 @@
+Lab 1 PPW
+Name    : Arga Ghulam Ahmad
+NPM     : 1606821601
+Subject : PPW
+Class   : B
+
+Lab 1 Heroku Link:
+    [lab1ppw_arga](https://lab1ppw-arga.herokuapp.com/)
+
+
 # Lab 1: Introduction to Git (on GitLab) & TDD (Test-Driven Development) with Django
 
 CSGE602022 - Web Design & Programming (Perancangan & Pemrograman Web) @
