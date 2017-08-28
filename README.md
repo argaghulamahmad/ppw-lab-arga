@@ -4,6 +4,8 @@
 - Subject : PPW
 - Class   : B
 
+## [link gitlab my-first-repo] (https://gitlab.com/argaghulamahmad/my-first-repo)
+## [link gitlab lab_1] (https://gitlab.com/argaghulamahmad/lab_1)
 ## [link heroku lab1ppw_arga](https://lab1ppw-arga.herokuapp.com/)
 
 
