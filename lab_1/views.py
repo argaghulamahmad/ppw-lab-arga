@@ -16,5 +16,5 @@ def index(request):
 def calculate_age(birth_year):
     datetime_now = datetime.datetime.now()
     current_year = datetime_now.year
-    my_age = birth_year - current_year
+    my_age = abs(birth_year - current_year)
     return my_age
