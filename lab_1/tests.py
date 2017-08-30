@@ -1,13 +1,12 @@
-from django.test import TestCase
-from django.test import Client
-from django.urls import resolve
-from .views import index, mhs_name, calculate_age
-from django.http import HttpRequest
 from datetime import date
-import unittest
 
+from django.http import HttpRequest
+from django.test import Client
+from django.test import TestCase
+from django.urls import resolve
 
-# Create your tests here.
+from .views import index, mhs_name, calculate_age
+
 
 class HelloNameUnitTest(TestCase):
 
