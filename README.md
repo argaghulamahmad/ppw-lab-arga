@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-# Lab 1 PPW
 - Name    : Arga Ghulam Ahmad
 - NPM     : 1606821601
 - Subject : PPW
@@ -8,19 +6,11 @@
 ## [link gitlab my-first-repo] (https://gitlab.com/argaghulamahmad/my-first-repo)
 ## [link gitlab lab_1] (https://gitlab.com/argaghulamahmad/lab_1)
 ## [link heroku lab1ppw_arga](https://lab1ppw-arga.herokuapp.com/)
-
-
-# Lab 1: Introduction to Git (on GitLab) & TDD (Test-Driven Development) with Django
-=======
 # Tutorials and Assignment Repository
->>>>>>> b80a2738b5018e63cdf9fdc4a7f28364875518a0
 
 CSGE602022 - Web Design & Programming (Perancangan & Pemrograman Web) @
 Faculty of Computer Science Universitas Indonesia, Odd Semester 2017/2018
 
-* * *
-
-<<<<<<< HEAD
 ## Learning Objectives
 
 After completing this exercise, students will be able to:
@@ -314,14 +304,14 @@ Now please proceed to the instructions as follows.
     ```bash
     python -m venv env
     ```
-    
+
     > Make sure that you executed the command in the root path of the repository.
 2. Activate your virtual environment and install required packages. Note that
 the command for activating virtual environment is different on Windows and
 Unix-based OS.
 
     Windows:
-    
+
     ```bash
     env\Scripts\activate.bat
     pip install -r requirements.txt
@@ -477,7 +467,7 @@ please read the following sections.
 If you previously haven't worked on [Lab 1](lab_1/README.md) Tutorial
 
 1. then Create a fork of this repository to your GitLab account, which
-will create a copy of this repository under your own account. 
+will create a copy of this repository under your own account.
 2. Open the forked repository page at
 `https://gitlab.com/<YOURNAME>/ppw-lab` where `<YOURNAME>`
 is your GitLab username.
@@ -524,7 +514,7 @@ in [this guide](http://chris.beams.io/posts/git-commit/) on how to
 write a good commit message.
 7. Repeat steps 4 - 6 until you finish the tutorial.
 8. Once you are ready to submit your work or you want to save it to
-your repository on GitLab, do a Git **push**. The Git command: 
+your repository on GitLab, do a Git **push**. The Git command:
 `git push origin master`
 
 ## Pulling Updates From Upstream
@@ -545,7 +535,7 @@ forget to push it back to your own GitLab repository. Use Git command:
 
 1. Go to Pipeline Settings (`Settings -> Pipelines`)
 2. Go to section Coverage Settings (`Pipelines -> Test coverage parsing`)
-3. Write this Regex (Regular Expression) in textbox `Test Coverage Parsing` 
+3. Write this Regex (Regular Expression) in textbox `Test Coverage Parsing`
 
     > TOTAL\s+\d+\s+\d+\s+(\d+)%
 
@@ -574,7 +564,7 @@ International classes:
     the demonstration is still done before **your lab session**, students have the chance
     to achieve maximum score for the tutorial.
 2. If the demonstration is done after **your lab session**, you have to demonstrate
- your work to your **lecturer** and your score won't reach maximum point eventhough you 
+ your work to your **lecturer** and your score won't reach maximum point eventhough you
  **do all checklists**
 
 ### Happy Coding :)
