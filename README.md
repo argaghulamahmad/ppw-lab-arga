@@ -4,8 +4,8 @@
 - Class   : B
 
 ## [link gitlab my-first-repo] (https://gitlab.com/argaghulamahmad/my-first-repo)
-## [link gitlab lab_1] (https://gitlab.com/argaghulamahmad/lab_1)
-## [link heroku lab1ppw_arga](https://lab1ppw-arga.herokuapp.com/)
+## [link gitlab lab-ppw-arga] (https://gitlab.com/argaghulamahmad/ppw_lab)
+## [link heroku lab-ppw_arga] (https://ppw-lab-arga.herokuapp.com/)
 # Tutorials and Assignment Repository
 
 CSGE602022 - Web Design & Programming (Perancangan & Pemrograman Web) @
