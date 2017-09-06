@@ -1,4 +1,9 @@
-from django.test import TestCase
+from django.http import HttpRequest
+from django.test import TestCase, Client
+from django.urls import resolve
+
+from lab_2_addon.views import bio_dict, index
+
 
 class Lab2AddonUnitTest(TestCase):
 
