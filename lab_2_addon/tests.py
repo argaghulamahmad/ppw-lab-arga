@@ -1,6 +1,7 @@
 from django.http import HttpRequest
 from django.test import TestCase, Client
 from django.urls import resolve
+from unittest import skip
 
 from lab_2_addon.views import bio_dict, index
 
