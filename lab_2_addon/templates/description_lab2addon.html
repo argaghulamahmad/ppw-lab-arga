@@ -1,24 +1,74 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <style media="screen">
   #greeting-bannner {
     text-align: center;
     padding-top: 20px;
     padding-bottom: 20px;
-    color: blue;
+    color: black;
     font-size: 30px;
     height: 100px;
+  }
+
+  table.paleBlueRows {
+    font-family: "Times New Roman", Times, serif;
+    border: 1px solid #FFFFFF;
+    width: 350px;
+    height: 200px;
+    text-align: center;
+    border-collapse: collapse;
+  }
+
+  table.paleBlueRows td,
+  table.paleBlueRows th {
+    border: 3px solid #FFFFFF;
+    padding: 3px 2px;
+  }
+
+  table.paleBlueRows tbody td {
+    font-size: inherit;
+  }
+
+  table.paleBlueRows tr:nth-child(even) {
+    background: #D0E4F5;
+  }
+
+  table.paleBlueRows thead {
+    background: #0B6FA4;
+    border-bottom: 5px solid #FFFFFF;
+  }
+
+  table.paleBlueRows thead th {
+    font-size: 17px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-align: center;
+    border-left: 2px solid #FFFFFF;
+  }
+
+  table.paleBlueRows thead th:first-child {
+    border-left: none;
+  }
+
+  table.paleBlueRows tfoot {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333333;
+    background: #D0E4F5;
+    border-top: 3px solid #444444;
+  }
+
+  table.paleBlueRows tfoot td {
+    font-size: 14px;
   }
 </style>
 
 <h3 id="greeting-bannner" style="">Hi all, This is my complete biodata</h3>
-<table align="center" style="text-align: center">
-    {% for bio in bio_dict %}
-        <tr>
-            <td class="subject">{{ bio.subject }}</td>
-            <td class="value">{{ bio.value }}</td>
-        </tr>
-    {% endfor %}
+<table class="paleBlueRows" align="center" style="text-align: center">
+  {% for bio in bio_dict %}
+  <tr>
+    <td class="subject">{{ bio.subject }}</td>
+    <td class="value">{{ bio.value }}</td>
+  </tr>
+  {% endfor %}
 </table>
-<br><br>
-{% endblock %}
+<br><br> {% endblock %}
