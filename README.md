@@ -425,7 +425,7 @@ code snippets.
 1. Weekly Exercises
     1. [Lab 1](lab_1/README.md) - Introduction to Git (on GitLab) & TDD (Test-Driven Development) with Django
     2. [Lab 2](lab_2/README.md) - Introduction to Django Framework
-    3. [Lab 3](#) - TBA
+    3. [Lab 3](lab_instruction/lab_3/README.md) - Introduction to _Models_ Django and Heroku Database with TDD Discipline
     4. [Lab 4](#) - TBA
     5. [Lab 5](#) - TBA
     6. [Lab 6](#) - TBA
@@ -445,8 +445,8 @@ code snippets.
 
 After you work at [Lab 1](lab_1/README.md), make sure to link this repository to your Lab 1 Repository :
 
-1. Add this repository link to your remote list as `upstream` (`git remote add upstrean https://gitlab.com/PPW-2017/ppw-lab`)
-2. Pull the latest update to check whether new tutorials has been updated (`git pull upstream master`)
+1. Add this repository link to your remote list as `upstream` (`git remote add upstream https://gitlab.com/PPW-2017/ppw-lab`)
+2. Pull the latest update to check whether new tutorials have been updated (`git pull upstream master`)
 3. Fix any merge conflict(s) that might arise (hopefully none)
     - Always choose latest commit from `upstream` when fixing merge
     conflict(s)
@@ -458,7 +458,7 @@ Working on a tutorial problem set (This instructions applied for 3rd tutorials a
 
 1. Pull any updates from `upstream`
 2. Create new apps on Django Project based on your tutorials `python manage.py startapp lab_n` where **n** is turoial number. E.g. **lab_2**
-3. Do the exercises as instructed in README.md file ([click this](lab_2/README.md) to see this week Tutorials README.md)
+3. Do the exercises as instructed in README.md file ([click this](lab_instruction/lab_3/README.md) to see this week Tutorials README.md)
 4. Commit your work frequently
 5. Write good commit message(s)
 6. If your work is ready for grading: `git push origin master`
@@ -483,7 +483,7 @@ where `<PATH>` is a path to a directory in your local machine.
 5. Go to the directory where the cloned repository is located in your
 local machine.
 6. Add new remote called **upstream** that points to the original
-GitLab repository. Use Git command: `git remote add upstream git remote add upstream https://gitlab.com/PPW-2017/ppw-lab`
+GitLab repository. Use Git command: `git remote add upstream https://gitlab.com/PPW-2017/ppw-lab`
 7. Tell your TA about your GitLab username and URL to your tutorial
 repository so s/he can grade it later.
 8. Ensure that your repository page has visibility level set to

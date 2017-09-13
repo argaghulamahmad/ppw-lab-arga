@@ -30,9 +30,11 @@ Dengan kata lain, setiap _Django project_ sebaiknya memiliki _virtualenv_ nya se
 
 ## Struktur _Django Project_
 
-`django-admin.py` adalah _script_ yang digunakan untuk pembuatan _Django project_. Contoh untuk membuat suatu _project_
+`django-admin.py` adalah _script_ yang digunakan untuk pembuatan _Django project_. Perintah untuk membuat suatu _project_
 
 ``` django-admin.py startproject <NAMA-PROJECT> ```
+
+> Ganti `<NAMA-PROJECT>` dengan nama yang kalian inginkan, misalkan Lab-PPW-2017
 
 Struktur project yang dihasilkan, 
 1. `virtualenv` sebagai sub-dir _project_ <NAMA-PROJECT>
@@ -75,11 +77,16 @@ Struktur project yang dihasilkan,
 >
 > Jangan lupa untuk memasukkan `virtualenv` ke dalam `.gitignore`
 
+Perhatikan bahwa direktori dengan nama `<NAMA-PROJECT>` ada dua buah.  
+Direktori yang pertama adalah direktori utama _project_ , sementara direktori yang kedua adalah
+direktori konfigurasi atau pengaturan _project_ yang di dalamnya terdapat berkas `settings.py`. 
+
 `django-apps-1` dan `django-apps-2` merupakan `apps` milik Django. Contoh yang sudah ada ialah `lab_1` dan `lab_2`. 
 Dalam satu _project_ bisa terdapat banyak `apps`. Untuk membuat suatu app, gunakan perintah
 
 ``` python manage.py startapp <app-name> ```
 
+> ganti` <app-name>` menggunakan nama sesuai kebutuhan/keinginan kalian, misalkan `lab_x`. 
 > sebelum menjalankan perintah ini, pastikan sudah berada satu direktori dengan berkas `manage.py`. 
 >
 > Coba perintah `ls` (linux) atau `dir` (windows) 
@@ -99,18 +106,52 @@ Struktur umum dari suatu `apps` ialah :
             ...
 ```
 
-> Suatu `app` dianggap aktif atau terpakai jika `app` tersebut didaftarkan di pengaturan `INSTALLED_APP`
+> Suatu `app` dianggap aktif atau terpakai jika `app` tersebut didaftarkan di pengaturan `INSTALLED_APPS`
 > pada berkas `settings.py` (ada pada direktori pengaturan _project_, yang nama direktorinya sama dengan nama _project_ Django)
 
 Secara _default_ , tidak ada berkas `urls.py` karena Django memberikan kebebasan untuk membuat _routing_ sesuai kebutuhan pengembang.
 Namun untuk _best practice_ dan kemudahan pengembangan, berkas `urls.py` dibuat manual untuk setiap `app`. Berkas `urls.py` satu level
 (satu direktori) dengan berkas `views.py`
 
+Selain itu, untuk menyimpan berkas `HTML`  (misalkan `index.html`) biasanya dibuat suatu direktori bernama `templates` di 
+dalam direktori `<app-name>`, jadi struktur dari suatu `app` nantinya akan menjadi 
+
+```python
+    - <app-name>
+        __init__.py
+        admin.py
+        apps.py
+        models.py
+        tests.py
+        views.py
+        urls.py
+        - migrations
+            ...
+        - templates
+            ...
+```
+
 > Apa beda `Project` dan `App` ? _Project_ adalah kumpulan konfigurasi dan beberapa app (aplikasi) untuk suatu website tertentu. 
 > Sedangkan _App_ adalah suatu aplikasi web yang memiliki fungsi/tugas tertentu, misalkan sebagai database atau sebagai aplikasi survei sederhana.
 > Satu _project_ dapat memiliki banyak _app_, dan satu _app_ dapat digunakan di banyak _project_.
 > 
-> <cite> https://docs.djangoproject.com/en/1.11/intro/tutorial01/ </cite>
+> Tutorial pembuatan Django _project_ : <cite> https://docs.djangoproject.com/en/1.11/intro/tutorial01/ </cite>
+
+Sekilas tentang berkas `settings.py` , pada berkas ini terdapat _section_ `INSTALLED_APPS` yang berfungsi untuk 
+mendaftarkan aplikasi yang akan dipakai/dijalankan pada suatu _project_.
+Contohnya, mendaftarkan `app` bernama "lab_ppw" ke INSTALLED_APPS : 
+
+```python
+INSTALLED_APPS = [
+    ...
+    lab_1,
+    lab_ppw,
+]
+```
+
+
+> jika "sedang" tidak ingin menggunakan suatu `app`, daripada menghapus folder `app` tersebut, kamu bisa 
+> menon-aktifkan `app` tersebut dengan menghapusnya dari _INSTALLED_APPS_
 
 
 ## Routing pada Django
@@ -132,10 +173,11 @@ Perhatikan struktur _project_ Django, terdapat sub-dir dengan nama sama persis d
     wsgi.py
 ```
 
-Secara sederhana, format penulisan utk URL pada Django ialah `url(regex,view, kwargs=None, name=None)`
+Secara sederhana, format penulisan utk URL pada Django ialah `url(regex, view, kwargs=None, name=None)`
 
-- regex ialah _pattern_ pattern yang akan dicocokkan 
-- `view` ialah fungsi yang untuk memproses _request_ dan mengatur tampilan. 
+- regex ialah _pattern_ yang akan dicocokkan 
+- `view` ialah fungsi yang untuk memproses _request_ dan mengatur tampilan.
+- _kwargs_ dan _name_ saat ini bisa diabaikan/dikosongkan
 
 > Untuk mengetahui lebih lanjut format penulisan urls, cek [link] (https://docs.djangoproject.com/en/1.11/_modules/django/conf/urls/#url) berikut 
 
@@ -184,8 +226,9 @@ Penjelasan ringkas :
 
 Pada berkas `views.py` diasumsikan (dan seharusnya) ada fungsi bernama `index` atau `def index(request):`.
 Pada berkas `views.py` ini, juga akan diatur bagaimana _request_ akan diproses sebelum ditampilkan. 
-Perhatikan fungsi `render` yang ada pada berkas `views.py`, terdapat berkas `HTML`.
-Direktori `templates` berfgunsi untuk menyimpan berkas HTML yang dipanggil oleh `views`.
+Perhatikan fungsi `render` yang ada pada berkas `views.py`, terdapat berkas HTML.
+Direktori `templates` berfungsi untuk menyimpan berkas HTML yang dipanggil oleh `views`, jadi
+pastikan berkas tersebut ada dan namanya sesuai untuk menghindari kesalahan.
 
 > Untuk memastikan hal tersebut, cek penggunaan `views` pada https://gitlab.com/PPW-2017/ppw-lab/blob/master/lab_1/views.py 
 >
@@ -236,7 +279,7 @@ di sebuah `landing page`
 
 1. Menampilkan Halaman _Landing Page_
     1. [ ] Isi variabel `landing_page_content` sehingga menjadi _Landing Page_ yang layak (Min 30 karakter)
-    2. [ ] Buatlah konfigurasi URL dalam _file_ `lab_2/views.py` sehingga _Landing Page_ bisa diakses dengan URL `<HEROKU_APP_HOST>/lab-2/`
+    2. [ ] Buatlah konfigurasi URL dalam _file_ `lab_2/urls.py` sehingga _Landing Page_ bisa diakses dengan URL `<HEROKU_APP_HOST>/lab-2/`
         > contoh : djangoppw.herokuapp.com/lab-2/
 2. Membuat _Django Apps_ baru bernama *lab_2_addon* lalu lakukan konfigurasi pada `views.py`
     1. [ ] Buatlah sebuah `app` baru (Hint: Jalankan _command_ `python manage.py help`)
@@ -252,7 +295,7 @@ di sebuah `landing page`
     {'subject' : 'Birth Date', 'value' : birth_date.strftime('%d %B %Y')},\
     {'subject' : 'Sex', 'value' : ''}]
     
-    def index_addon(request):
+    def index(request):
         response = {}
         return render(request, 'description_lab2addon.html', response)
 ```
@@ -265,9 +308,9 @@ di sebuah `landing page`
     1. [ ] Ubah file `urls.py` yang ada didalam _folder_ `lab_2_addon` dan `praktikum` sehingga URL `<HEROKU_APP_HOST>/lab-2-addon/`
     bisa menampilkan halaman `description_lab2addon.html`
     2. [ ] Ubah _section_ INSTALLED_APPS sehingga `apps lab_2_addon` dapat dikenali sebagai _Django Apps_ yang aktif (Tanpa melakukan langkah ini
-    maka kalian tidak bisa halaman `description_lab2addon.html` tidak bisa ditampilkan melalui URL yang sudah dibuat di `urls.py`)
+    maka halaman `description_lab2addon.html` tidak bisa ditampilkan melalui URL yang sudah dibuat di `urls.py`)
     3. [ ] Tampilkan halaman _Landing Page_ jika ada _request_ yang datang pada Root URL _website_ kalian
-        >Ketika mengakses `<HEROKU_APP_HOST>/` maka _Landing Page_ akan tampil
+        >Ketika mengakses `<HEROKU_APP_HOST>/` maka _Landing Page_ akan tampil (Hint: Gunakan RedirectView)
     4. [ ] Isilah _file_ `lab_2_addon/tests.py` dengan cara memindahkan `class Lab2AddonUnitTest` beserta semua
     _Test Case_ yang ada lalu aktifkan _Test Case_ tersebut dengan menghilangkan `skip` di atas setiap _Test Case_.
     Import semua `library`, `function` atau `variabel` yang dibutuhkan agar _Test Case_ bisa dijalankan
