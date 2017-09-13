@@ -1,5 +1,8 @@
 from django.test import TestCase, Client
 from django.urls import resolve
+from django.db import models
+from .models import Diary
+from django.utils import timezone
 from .views import index
 
 class Lab3Test(TestCase):
