@@ -5,7 +5,7 @@
         position: absolute;
         width: 500px;
         height: 50px;
-        top: 25%;
+        top: 20%;
         left: 50%;
         margin-left: -250px; /* margin is -0.5 * dimension */
         margin-top: 0px;
@@ -23,9 +23,25 @@
       padding-left: 20px;
       border-radius: 100%;
     }
+
+    .footer-social-icons {
+      text-align: center;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
 </style>
 <div class="center_screen">
     <img id="profile-photo" src="https://avatars0.githubusercontent.com/u/19942092?v=4&s=460" alt="argaghulamahmad" />
+    <div class="footer-social-icons">
+      <a href="https://facebook.com/argaghulamahmad"><i class="fa fa-facebook"></i></a>
+      <a href="https://twitter.com/ahmadghulamarga"><i class="fa fa-twitter"></i></a>
+      <a href="https://instagram.com/argaghulamahmad"><i class="fa fa-instagram"></i></a>
+      <a href="https://linkedin.com/in/argaghulamahmad"><i class="fa fa-linkedin"></i></a>
+      <a href="https://github.com/argaghulamahmad"><i class="fa fa-github"></i></a>
+      <a href="https://gitlab.com/argaghulamahmad"><i class="fa fa-gitlab"></i></a>
+      <a href="https://behance.net/argaghulamahmad"><i class="fa fa-behance"></i></a>
+      <a href="https://blog.arga.ga"><i class="fa fa-rss"></i></a>
+    </div>
     <p id="test">Hello, this is {{ name }}. {{ content }}.</p>
 </div>
 {% endblock %}
