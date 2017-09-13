@@ -1,6 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
-<h3 style="text-align: center;padding-top: 20px;padding-bottom: 20px;color: blue;font-size: 30px;height: 100px;">Hi all, This is my complete biodata</h3>
+<style media="screen">
+  #greeting-bannner {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: blue;
+    font-size: 30px;
+    height: 100px;
+  }
+</style>
+
+<h3 id="greeting-bannner" style="">Hi all, This is my complete biodata</h3>
 <table align="center" style="text-align: center">
     {% for bio in bio_dict %}
         <tr>
