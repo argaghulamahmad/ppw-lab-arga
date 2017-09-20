@@ -1,32 +1,68 @@
 {% extends "lab_4/layout/base.html" %}
 
     {% block content %}
-    <h1>Portofolio</h1>
-    <hr/>
-    <section name="bio">
-        <h2>Bio</h2>
-        <p>
-            {{content}}
-        </p>    
-    </section>
-    <hr/>
-    <section name="about_me">
-        <h2>List</h2>
-        <ul>
-            {% for ii in about_me %}
-            <li> {{ ii }} </li>
-            {% endfor %}
-        </ul>
-    </section>
-    <hr/>
-        <section name="form">
-        <h2>Send Message</h2>
-        <form id="form" method="POST" action="{% url 'lab-4:add_message' %}">
-            {% csrf_token %}
-            {{ message_form }}
-            <br>
-            <button type="submit" class="btn btn-default">Submit</button>
-        </form>
-    </section>
+        <style>
+            #profile-photo {
+                display: block;
+                margin-right: auto;
+                margin-left: auto;
+                padding: 20px 10px 20px 10px;
+                border-radius: 50%;
+            }
+            #description-bio {
+                text-align: center;
+                width: 60%;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .footer-social-icons {
+                text-align: center;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+            #title-portopolio {
+                text-align: center;
+                margin-left: auto;
+                margin-right: auto;
+                visibility: hidden;
+            }
+        </style>
+
+        {#<h1 id="title-portopolio">Portofolio</h1>#}
+        <div>
+            <img id="profile-photo" src="https://avatars0.githubusercontent.com/u/19942092?v=4&s=460" alt="argaghulamahmad" />
+            <h2 style="text-align: center;">Arga Ghulam Ahmad</h2>
+            <div class="footer-social-icons">
+              <a href="https://facebook.com/argaghulamahmad"><i class="fa fa-facebook"></i></a>
+              <a href="https://twitter.com/ahmadghulamarga"><i class="fa fa-twitter"></i></a>
+              <a href="https://instagram.com/argaghulamahmad"><i class="fa fa-instagram"></i></a>
+              <a href="https://linkedin.com/in/argaghulamahmad"><i class="fa fa-linkedin"></i></a>
+              <a href="https://github.com/argaghulamahmad"><i class="fa fa-github"></i></a>
+              <a href="https://gitlab.com/argaghulamahmad"><i class="fa fa-gitlab"></i></a>
+              <a href="https://behance.net/argaghulamahmad"><i class="fa fa-behance"></i></a>
+              <a href="https://blog.arga.ga"><i class="fa fa-rss"></i></a>
+            </div>
+            {#<h2 style="visibility: hidden">Bio</h2>#}
+            <p id="description-bio">Hello, this is {{ author }}. {{ content }}.</p>
+        </div>
+        <section name="about_me" style="visibility: hidden">
+        {#<h2>List</h2>#}
+            <ul>
+                {% for ii in about_me %}
+                <li> {{ ii }} </li>
+                {% endfor %}
+            </ul>
+        </section>
+        <hr/>
+            <section name="form">
+            <h2>Send Message</h2>
+            <form id="form" method="POST" action="{% url 'lab-4:add_message' %}">
+                {% csrf_token %}
+                {{ message_form }}
+                <br>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+        </section>
 
     {% endblock %}

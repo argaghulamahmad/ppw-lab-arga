@@ -5,7 +5,7 @@ from .forms import Message_Form
 from .models import Message
 
 response = {'author': "Arga Ghulam Ahmad"}
-about_me = ["Computer Science Student", "Programmer", "Gamer", "Developer", "Rider", "OmegaCSUI"]
+about_me = ["Computer Science Student", "Programmer", "Gamer", "Muslim", "Rider", "OmegaCSUI"]
 def index(request):
     response['content'] = landing_page_content
     html = 'lab_4/lab_4.html'
