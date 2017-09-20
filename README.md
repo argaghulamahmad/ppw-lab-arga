@@ -7,9 +7,9 @@
 ## [link gitlab lab-ppw-arga] (https://gitlab.com/argaghulamahmad/ppw_lab)
 ## [link heroku lab-ppw_arga] (https://ppw-lab-arga.herokuapp.com/)
 
-[![pipeline status](https://gitlab.com/argaghulamahmad/ppw_lab/badges/master/pipeline.svg)](https://gitlab.com/argaghulamahmad/ppw_lab/commits/master)
+[![pipeline status](https://gitlab.com/argaghulamahmad/ppw-lab/badges/master/pipeline.svg)](https://gitlab.com/argaghulamahmad/ppw-lab/commits/master)
 
-[![coverage report](https://gitlab.com/argaghulamahmad/ppw_lab/badges/master/coverage.svg)](https://gitlab.com/argaghulamahmad/ppw_lab/commits/master)
+[![coverage report](https://gitlab.com/argaghulamahmad/ppw-lab/badges/master/coverage.svg)](https://gitlab.com/argaghulamahmad/ppw-lab/commits/master)
 
 # Tutorials and Assignment Repository
 
