@@ -2,12 +2,10 @@ from django.test import TestCase
 from django.test import Client
 from django.urls import resolve
 from django.http import HttpRequest
-from .views import index, about_me, landing_page_content
 from lab_1.views import mhs_name
 from .models import Message
 from .forms import Message_Form
-from .views import index, message_post
-from .views import index, message_table, about_me, landing_page_content
+from .views import index, message_table, about_me, landing_page_content, message_post
 
 class Lab4UnitTest(TestCase):
     def test_lab_4_url_is_exist(self):
@@ -99,3 +97,9 @@ class Lab4UnitTest(TestCase):
 
         self.assertIn('Anonymous', html_response)
         self.assertIn(message_anonymous, html_response)
+
+    def test_str_function_on_models(self):
+        testStr = "test"
+        testMessage = Message()
+        testMessage.message = testStr
+        self.assertEqual(testStr.__str__(), testStr)
