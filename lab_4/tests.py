@@ -102,4 +102,4 @@ class Lab4UnitTest(TestCase):
         testStr = "test"
         testMessage = Message()
         testMessage.message = testStr
-        self.assertEqual(testStr.__str__(), testStr)
+        self.assertEqual(testMessage.__str__(), testStr)
