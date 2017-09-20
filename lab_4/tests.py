@@ -3,6 +3,9 @@ from django.test import Client
 from django.urls import resolve
 from django.http import HttpRequest
 from .views import index, about_me, landing_page_content
+from lab_1.views import mhs_name
+from .models import Message
+from .forms import Message_Form
 
 class Lab4UnitTest(TestCase):
     def test_lab_4_url_is_exist(self):
@@ -27,3 +30,26 @@ class Lab4UnitTest(TestCase):
         #Chceking whether all About Me Item is rendered
         for item in about_me:
             self.assertIn(item,html_response)
+
+    def test_model_can_create_new_message(self):
+        # Creating a new activity
+        new_activity = Message.objects.create(name=mhs_name, email='test@gmail.com', message='This is a test')
+
+        # Retrieving all available activity
+        counting_all_available_message = Message.objects.all().count()
+        self.assertEqual(counting_all_available_message, 1)
+
+    def test_form_message_input_has_placeholder_and_css_classes(self):
+        form = Message_Form()
+        self.assertIn('class="form-control"', form.as_p())
+        self.assertIn('<label for="id_name">Nama:</label>', form.as_p())
+        self.assertIn('<label for="id_email">Email:</label>', form.as_p())
+        self.assertIn('<label for="id_message">Message:</label>', form.as_p())
+
+    def test_form_validation_for_blank_items(self):
+        form = Message_Form(data={'name': '', 'email': '', 'message': ''})
+        self.assertFalse(form.is_valid())
+        self.assertEqual(
+            form.errors['message'],
+            ["This field is required."]
+        )
