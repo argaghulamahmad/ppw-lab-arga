@@ -553,7 +553,7 @@ sebelum membuat _page_ tersebut
 4. Additional
     1. [x] Tampilkan Foto kalian. Gunakan tag `<img>` pada home page dengan bentuk image berbentuk lingkaran
     2. [x] Berikan tampilan yang menarik pada home page
-    3. [ ] Buatlah test baru untuk test keberadaan Navbar dan Copyright
+    3. [x] Buatlah test baru untuk test keberadaan Navbar dan Copyright
     4. [ ] Tampilkan Pesan error bilamana `Message` diisi kosong (Beserta Testnya)
     5. [ ] Buatlah _custom_ pesan error agar lebih menarik (Beserta Testnya)
     6. [x] Ubah _Redirection_ ketika mengakses _Root_ URL (`<YOURAPPNAME>.herokuapp.com`) sehingga
