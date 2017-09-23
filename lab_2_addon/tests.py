@@ -11,7 +11,8 @@ class Lab2AddonUnitTest(TestCase):
     def test_lab_2_addon_url_is_exist(self):
         response = Client().get('/lab-2-addon/')
         self.assertEqual(response.status_code, 200)
-    
+
+    @skip
     def test_root_url_now_is_using_index_page_from_lab_2(self):
         response = Client().get('/')
         self.assertEqual(response.status_code, 301)

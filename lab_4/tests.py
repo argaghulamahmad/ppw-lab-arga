@@ -103,3 +103,8 @@ class Lab4UnitTest(TestCase):
         testMessage = Message()
         testMessage.message = testStr
         self.assertEqual(testMessage.__str__(), testStr)
+
+    def test_root_url_now_is_using_index_page_from_lab_4(self):
+        response = Client().get('/')
+        self.assertEqual(response.status_code, 301)
+        self.assertRedirects(response,'/lab-4/',301,200)
