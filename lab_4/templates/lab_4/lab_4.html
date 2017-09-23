@@ -27,6 +27,31 @@
                 margin-right: auto;
                 visibility: hidden;
             }
+
+            ul#horizontal-list {
+                min-width: 696px;
+                list-style: none;
+                padding-top: 20px;
+            }
+            ul#horizontal-list li {
+                display: inline;
+                font-size: x-small;
+
+            }
+
+            #about_me_list {
+                visibility: visible;
+                display: block;
+                margin-right: auto;
+                margin-left: auto;
+                text-align: center;
+            }
+
+            #form-sec {
+                display: block;
+                margin: 0 auto 0 auto;
+                width: 70%;
+            }
         </style>
 
         {#<h1 id="title-portopolio">Portofolio</h1>#}
@@ -46,16 +71,16 @@
             {#<h2 style="visibility: hidden">Bio</h2>#}
             <p id="description-bio">Hello, this is {{ author }}. {{ content }}.</p>
         </div>
-        <section name="about_me" style="visibility: hidden">
+        <section name="about_me" id="about_me_list" style="visibility: visible">
         {#<h2>List</h2>#}
-            <ul>
+            <ul id="horizontal-list">
                 {% for ii in about_me %}
-                <li> {{ ii }} </li>
+                <li> # {{ ii }} </li>
                 {% endfor %}
             </ul>
         </section>
         <hr/>
-            <section name="form">
+            <section name="form" id="form-sec">
             <h2>Send Message</h2>
             <form id="form" method="POST" action="{% url 'lab-4:add_message' %}">
                 {% csrf_token %}
