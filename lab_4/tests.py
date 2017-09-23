@@ -110,6 +110,10 @@ class Lab4UnitTest(TestCase):
         self.assertRedirects(response,'/lab-4/',301,200)
 
     def is_copyright_exist(self):
-        copyright_str = "&copy;" + mhs_name
+        copyright_str = "&copy; " + mhs_name
         response = Client().get('/lab-4/')
         self.assertIn(copyright_str, response)
+
+    def is_navbar_exist(self):
+        response = Client().get('/lab-4/')
+        self.assertIn("</nav>", response)
