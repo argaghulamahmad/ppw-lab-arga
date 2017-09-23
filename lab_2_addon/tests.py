@@ -1,7 +1,6 @@
 from django.http import HttpRequest
 from django.test import TestCase, Client
 from django.urls import resolve
-from unittest import skip
 
 from lab_2_addon.views import bio_dict, index
 
@@ -11,12 +10,6 @@ class Lab2AddonUnitTest(TestCase):
     def test_lab_2_addon_url_is_exist(self):
         response = Client().get('/lab-2-addon/')
         self.assertEqual(response.status_code, 200)
-
-    # @skip('saat ini digunakan redirect view yang baru di lab_4')
-    # def test_root_url_now_is_using_index_page_from_lab_2(self):
-    #     response = Client().get('/')
-    #     self.assertEqual(response.status_code, 301)
-    #     self.assertRedirects(response,'/lab-2/',301,200)
 
     def test_lab2_addon_using_index_func(self):
         found = resolve('/lab-2-addon/')
