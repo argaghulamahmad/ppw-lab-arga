@@ -36,7 +36,6 @@
             ul#horizontal-list li {
                 display: inline;
                 font-size: x-small;
-
             }
 
             #about_me_list {
@@ -71,11 +70,11 @@
             {#<h2 style="visibility: hidden">Bio</h2>#}
             <p id="description-bio">Hello, this is {{ author }}. {{ content }}.</p>
         </div>
-        <section name="about_me" id="about_me_list" style="visibility: visible">
+        <section name="about_me" id="about_me_list">
         {#<h2>List</h2>#}
             <ul id="horizontal-list">
                 {% for ii in about_me %}
-                <li> # {{ ii }} </li>
+                <li> {{ ii }} </li>
                 {% endfor %}
             </ul>
         </section>

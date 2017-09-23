@@ -27,7 +27,7 @@ class Lab4UnitTest(TestCase):
         #Checking whether have Bio content
         self.assertIn(landing_page_content, html_response)
 
-        #Chceking whether all About Me Item is rendered
+        #Checking whether all About Me Item is rendered
         for item in about_me:
             self.assertIn(item,html_response)
 
