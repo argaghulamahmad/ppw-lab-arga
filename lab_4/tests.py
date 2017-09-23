@@ -108,3 +108,8 @@ class Lab4UnitTest(TestCase):
         response = Client().get('/')
         self.assertEqual(response.status_code, 301)
         self.assertRedirects(response,'/lab-4/',301,200)
+
+    def is_copyright_exist(self):
+        copyright_str = "&copy;" + mhs_name
+        response = Client().get('/lab-4/')
+        self.assertIn(copyright_str, response)
