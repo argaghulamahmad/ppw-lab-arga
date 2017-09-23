@@ -109,14 +109,14 @@ class Lab4UnitTest(TestCase):
         self.assertEqual(response.status_code, 301)
         self.assertRedirects(response,'/lab-4/',301,200)
 
-    def is_copyright_exist(self):
+    def test_is_copyright_exist(self):
         response = Client().get('/lab-4/')
         html_response = response.content.decode('utf8')
         copyright_str = '&copy; ' + mhs_name
         response = Client().get('/lab-4/')
         self.assertIn(copyright_str, html_response)
 
-    def is_navbar_exist(self):
+    def test_is_navbar_exist(self):
         response = Client().get('/lab-4/')
         html_response = response.content.decode('utf8')
         self.assertIn('</nav>', html_response)
