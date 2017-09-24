@@ -559,4 +559,4 @@ sebelum membuat _page_ tersebut
     6. [x] Ubah _Redirection_ ketika mengakses _Root_ URL (`<YOURAPPNAME>.herokuapp.com`) sehingga
     akan mengembalikan halaman _Home Page_ Lab 4 (Kondisikan _Test Case_ dari lab sebelumnya, dan buatlah _Test Case_ baru
     di `lab_4/tests.py` untuk memastikan bahwa _Root URL_ akan mengembalikan halaman _Home Page_ Lab 4)
-    7. [ ] Ubah _datetime_ sehingga menggunakan Waktu Lokal GMT + 7
+    7. [x] Ubah _datetime_ sehingga menggunakan Waktu Lokal GMT + 7
