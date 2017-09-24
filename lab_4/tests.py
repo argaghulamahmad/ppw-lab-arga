@@ -51,7 +51,7 @@ class Lab4UnitTest(TestCase):
         self.assertFalse(form.is_valid())
         self.assertEqual(
             form.errors['message'],
-            ["This field is required."]
+            ["Tolong isi input ini ya teman :)"]
         )
 
     def test_lab4_post_fail(self):
