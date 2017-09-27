@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'lab_2_addon',
     'lab_3',
     'lab_4',
+    'lab_5',
 ]
 
 MIDDLEWARE = [
