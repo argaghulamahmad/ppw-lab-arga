@@ -5,6 +5,10 @@ from .views import index, add_todo
 from .models import Todo
 from .forms import Todo_Form
 
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.options import Options
+
 class Lab5UnitTest(TestCase):
     def test_lab_5_url_is_exist(self):
         response = Client().get('/lab-5/')
@@ -54,3 +58,31 @@ class Lab5UnitTest(TestCase):
         response = Client().get('/lab-5/')
         html_response = response.content.decode('utf8')
         self.assertNotIn(test, html_response)
+
+class Lab5FunctionalTest(TestCase):
+
+    def setUp(self):
+        chrome_options = Options()
+        self.selenium  = webdriver.Chrome('./chromedriver', chrome_options=chrome_options)
+        super(Lab5FunctionalTest, self).setUp()
+
+    def tearDown(self):
+        self.selenium.quit()
+        super(Lab5FunctionalTest, self).tearDown()
+
+    def test_input_todo(self):
+        selenium = self.selenium
+        # Opening the link we want to test
+        selenium.get('http://127.0.0.1:8000/lab-5/')
+        # find the form element
+        title = selenium.find_element_by_id('id_title')
+        description = selenium.find_element_by_id('id_description')
+
+        submit = selenium.find_element_by_id('submit')
+
+        # Fill the form with data
+        title.send_keys('Mengerjakan Lab PPW')
+        description.send_keys('Lab kali ini membahas tentang CSS dengan penggunaan Selenium untuk Test nya')
+
+        # submitting the form
+        submit.send_keys(Keys.RETURN)
