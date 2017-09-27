@@ -60,11 +60,14 @@ class Lab5UnitTest(TestCase):
         self.assertNotIn(test, html_response)
 
 class Lab5FunctionalTest(TestCase):
-
     def setUp(self):
         chrome_options = Options()
-        self.selenium  = webdriver.Chrome('./chromedriver', chrome_options=chrome_options)
-        super(Lab5FunctionalTest, self).setUp()
+        chrome_options.add_argument('--dns-prefetch-disable')
+        chrome_options.add_argument('--no-sandbox')
+        chrome_options.add_argument('--headless')
+        chrome_options.add_argument('disable-gpu')
+        self.selenium = webdriver.Chrome('./chromedriver', chrome_options=chrome_options)
+        super(Lab5UnitTest, self).setUp()
 
     def tearDown(self):
         self.selenium.quit()
