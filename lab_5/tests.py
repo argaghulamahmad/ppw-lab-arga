@@ -67,7 +67,7 @@ class Lab5FunctionalTest(TestCase):
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('disable-gpu')
         self.selenium = webdriver.Chrome('./chromedriver', chrome_options=chrome_options)
-        super(Lab5UnitTest, self).setUp()
+        super(Lab5FunctionalTest, self).setUp()
 
     def tearDown(self):
         self.selenium.quit()
