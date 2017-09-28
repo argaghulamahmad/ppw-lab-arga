@@ -4,6 +4,7 @@ from django.db import models
 from .models import Diary
 from django.utils import timezone
 from .views import index
+from .views import add_activity
 
 class Lab3Test(TestCase):
     def test_lab_3_url_is_exist(self):
@@ -19,12 +20,12 @@ class Lab3Test(TestCase):
         self.assertEqual(found.func, index)
 
     def test_model_can_create_new_activity(self):
-            #Creating a new activity
-            new_activity = Diary.objects.create(date=timezone.now(),activity='Aku mau latihan ngoding deh')
+        #Creating a new activity
+        new_activity = Diary.objects.create(date=timezone.now(),activity='Aku mau latihan ngoding deh')
 
-            #Retrieving all available activity
-            counting_all_available_activity = Diary.objects.all().count()
-            self.assertEqual(counting_all_available_activity,1)
+        #Retrieving all available activity
+        counting_all_available_activity = Diary.objects.all().count()
+        self.assertEqual(counting_all_available_activity,1)
 
     def test_can_save_a_POST_request(self):
         response = self.client.post('/lab-3/add_activity/', data={'date': '2017-10-12T14:14', 'activity' : 'Maen Dota Kayaknya Enak'})
@@ -37,3 +38,7 @@ class Lab3Test(TestCase):
         new_response = self.client.get('/lab-3/')
         html_response = new_response.content.decode('utf8')
         self.assertIn('Maen Dota Kayaknya Enak', html_response)
+
+    def test_exception_handling_add_activity(self):
+        response = self.client.post('/lab-3/add_activity/', data={'date': 'test value error', 'activity': 'Test Activity'})
+        add_activity(response)
