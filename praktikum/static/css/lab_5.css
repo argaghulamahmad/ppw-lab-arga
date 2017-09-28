@@ -17,77 +17,24 @@ textarea {
 section{
   min-height: 600px;
 }
-/* animasi pada title */
 .main-title{
   -webkit-animation: colorchange 1s infinite;
   -webkit-animation-direction: alternate;
   text-align: center;
 }
-
-/* animasi colorchange */
 @-webkit-keyframes colorchange {
-    0% {
-        -webkit-text-stroke: 5px #0fb8ad;
+	0% {
+		-webkit-text-stroke: 5px #0fb8ad;
     letter-spacing: 0;
-    }
+	}
   50% {
     -webkit-text-stroke: 7.5px  #1fc8db;
   }
-    100% {
-        -webkit-text-stroke: 10px  #2cb5e8;
+	100% {
+		-webkit-text-stroke: 10px  #2cb5e8;
     letter-spacing: 18px;
-    }
+	}
 }
-/* styling wrapper form */
-#input-list{
-  background: linear-gradient(to bottom right, #606062, #393939);
-}
-/* styling form */
-#input-list form{
-  width: 400px;
-  margin: 50px auto;
-  text-align: center;
-  position: relative;
-  z-index: 1;
-  background: white;
-  border: 0 none;
-  border-radius: 3px;
-  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
-  padding: 20px 30px;
-  box-sizing: border-box;
-  position: relative;
-}
-/* styling judul form, apakah arti dari tanda '>' ? */
-#input-list form > h2{
-  font-size: 1.3em;
-  text-transform: uppercase;
-  color: #2C3E50;
-  margin-bottom: 10px;
-}
-/* styling form input dan textarea, apakah arti dari tanda ',' ? */
-#input-list form > .todo-form-input, #input-list form > .todo-form-textarea{
-  padding: 15px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    margin-bottom: 10px;
-    width: 100%;
-    box-sizing: border-box;
-    color: #2C3E50;
-    font-size: 13px;
-}
-/* styling footer */
-footer p{
-  text-align: center;
-  padding-top: 10px;
-}
-
-/* styling responsive max-width menandakan bahwa rule css ini hanya akan bekerja untuk layar dengan maksimal 768px, jika lebih dari 768px maka rule ini diabaikan */
-@media only screen and (max-width: 768px) {
-  #input-list form {
-      width: 290px;
-  }
-}
-
 #input-list{
   background: linear-gradient(to bottom right, #606062, #393939);
 }
@@ -170,7 +117,16 @@ footer p{
   flex-shrink: 0;
   flex-basis: 25%;
 }
-
+.to-do-list:hover {
+    -webkit-box-shadow: 0 12px 25px 10px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 12px 25px 10px rgba(0, 0, 0, 0.2);
+    -o-box-shadow: 0 12px 25px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 12px 25px 10px rgba(0, 0, 0, 0.2);
+    -webkit-transform: translate(0, -5px);
+    -moz-transform: translate(0, -5px);
+    -o-transform: translate(0, -5px);
+    transform: translate(0, -5px);
+}
 .to-do-list .to-do-list-title {
   font-size: 20px;
   font-weight: 700;
@@ -208,6 +164,37 @@ footer p{
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
-.to-do-list .to-do-list-delete {
+.to-do-list:hover .to-do-list-delete {
   bottom: -50px;
+}
+.to-do-list .to-do-list-delete:hover{
+  -webkit-animation: neon 1.5s ease-in-out infinite alternate;
+}
+@-webkit-keyframes neon {
+  from {
+    box-shadow: 0 0 0px #e45;
+  }
+  to {
+    box-shadow: 0 0 10px #e45, 0 0 20px #e45, 0 0 30px #e45, 0 0 40px #e45, 0 0 70px #e45, 0 0 80px #e45, 0 0 100px #e45, 0 0 150px #e45;
+  }
+}
+
+footer p{
+  text-align: center;
+  padding-top: 10px;
+}
+
+@media only screen and (max-width: 480px) {
+  #input-list form {
+      width: 290px;
+  }
+  .to-do-list .to-do-list-delete {
+    bottom: -50px;
+  }
+  .flex-item{
+    padding: 0 15px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 100%;
+  }
 }
