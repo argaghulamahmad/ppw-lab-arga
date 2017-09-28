@@ -117,6 +117,8 @@ section{
   flex-shrink: 0;
   flex-basis: 25%;
 }
+
+/*animasi pada to-do-list*/
 .to-do-list:hover {
     -webkit-box-shadow: 0 12px 25px 10px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 0 12px 25px 10px rgba(0, 0, 0, 0.2);
@@ -184,6 +186,7 @@ footer p{
   padding-top: 10px;
 }
 
+/*style for mobile screen*/
 @media only screen and (max-width: 480px) {
   #input-list form {
       width: 290px;
