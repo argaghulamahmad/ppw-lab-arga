@@ -50,6 +50,10 @@
             }
           });
         });
+      $(".to-do-list-delete-button").on("click", function(e) {
+            var uid = $(this).data('id');
+            location.href="delete_todo/" + uid;
+        });
     </script>
 </body>
 </html>
