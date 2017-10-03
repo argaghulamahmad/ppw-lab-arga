@@ -1,7 +1,8 @@
+from django.http import HttpRequest
 from django.test import TestCase
 from django.test import Client
 from django.urls import resolve
-from .views import index, add_todo
+from .views import index, add_todo, delete_todo
 from .models import Todo
 from .forms import Todo_Form
 
@@ -41,7 +42,7 @@ class Lab5UnitTest(TestCase):
             ["This field is required."]
         )
 
-    def test_lab5_post_success_and_render_the_result(self):
+    def test_lab5_post_and_delete_success_and_render_the_result(self):
         test = 'Anonymous'
         response_post = Client().post('/lab-5/add_todo', {'title': test, 'description': test})
         self.assertEqual(response_post.status_code, 302)
@@ -49,6 +50,15 @@ class Lab5UnitTest(TestCase):
         response = Client().get('/lab-5/')
         html_response = response.content.decode('utf8')
         self.assertIn(test, html_response)
+
+        object_list = Todo.objects.get(title=test)
+        url_temp = object_list.id
+        request = HttpRequest()
+        delete_todo(request, url_temp)
+
+        response = Client.get('/lab-5/')
+        html_response = response.content.decode('utf8')
+        self.assertNotIn(test, html_response)
 
     def test_lab5_post_error_and_render_the_result(self):
         test = 'Anonymous'
