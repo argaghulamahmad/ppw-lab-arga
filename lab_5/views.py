@@ -22,3 +22,8 @@ def add_todo(request):
         return HttpResponseRedirect('/lab-5/')
     else:
         return HttpResponseRedirect('/lab-5/')
+
+def delete_todo(request, uid):
+    p = Todo.objects.get(id=uid)
+    p.delete()
+    return HttpResponseRedirect('/lab-5/')
