@@ -56,7 +56,7 @@ class Lab5UnitTest(TestCase):
         request = HttpRequest()
         delete_todo(request, url_temp)
 
-        response = Client.get('/lab-5/')
+        response = Client().get('/lab-5/')
         html_response = response.content.decode('utf8')
         self.assertNotIn(test, html_response)
 
