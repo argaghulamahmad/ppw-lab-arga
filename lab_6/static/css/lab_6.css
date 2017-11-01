@@ -109,3 +109,28 @@ body {
 .msg-receive:hover, .msg-send:hover {
     opacity: .9;
 }
+
+.calculator {
+  margin-top: 15%;
+  margin-bottom: 15%
+}
+
+.calculator .model {
+  background: #4e4e4e;
+}
+.calculator .calcs {
+  font-size: 56px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  height: auto;
+  border-radius: 0;
+  cursor: text;
+}
+
+.calculator #title {
+  color: #f9f9f9;
+}
+
+.calculator .btn {
+  border-radius: 0;
+}
