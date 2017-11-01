@@ -13,10 +13,12 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/lab_6.css' %}"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet"/>
-    <title>
-        {% block title %} Lab 6 By {{ author }} {% endblock %}
-    </title>
-</head>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.4.1.css">
+    <head>
+        <title>
+            {% block title %} Lab 6 By {{ author }} {% endblock %}
+        </title>
+    </head>
 <body>
 <header>
     {% include "lab_6/partials/header.html" %}
@@ -27,6 +29,7 @@
     {% endblock %}
 </content>
 <!-- Calculator Section -->
+<div id="qunit" hidden></div>
 <section class="calculator">
     <div class="container">
         <div class="model col-lg-5">
@@ -90,5 +93,7 @@
 <script type="application/javascript"
         src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="{% static 'js/lab_6.js' %}"></script>
+<script src="{% static 'js/test.js' %}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
+<script src="https://code.jquery.com/qunit/qunit-2.4.1.js"></script>
 </body>
