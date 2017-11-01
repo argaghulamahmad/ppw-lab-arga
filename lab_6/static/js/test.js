@@ -10,6 +10,11 @@ $(document).ready(function () {
     var button_clear = $('button:contains("AC")');
     var button_res = $('button:contains("=")');
 
+    var button_sin = $('button:contains("sin")');
+    var button_log = $('button:contains("log")');
+    var button_tan = $('button:contains("tan")');
+
+
     QUnit.test("Addition Test", function (assert) {
         button_8.click();
         button_add.click();
@@ -43,6 +48,27 @@ $(document).ready(function () {
         button_4.click();
         button_res.click();
         assert.equal($('#print').val(), 2, "8 / 4 must be 2");
+        button_clear.click();
+    });
+
+    QUnit.test("Sin Test", function (assert) {
+        button_8.click();
+        button_sin.click();
+        assert.equal($('#print').val(), 0.9893582466233818, "sin 8 must be 0.9893582466233818");
+        button_clear.click();
+    });
+
+    QUnit.test("Tan Test", function (assert) {
+        button_8.click();
+        button_tan.click();
+        assert.equal($('#print').val(), -6.799711455220379, "tan 8 must be -6.799711455220379");
+        button_clear.click();
+    });
+
+    QUnit.test("Log Test", function (assert) {
+        button_8.click();
+        button_log.click();
+        assert.equal($('#print').val(), 2.0794415416798357, "log 8 must be 2.0794415416798357");
         button_clear.click();
     });
 });
