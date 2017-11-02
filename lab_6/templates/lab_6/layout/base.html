@@ -20,7 +20,7 @@
         </title>
     </head>
 <body>
-<header>
+<header hidden>
     {% include "lab_6/partials/header.html" %}
 </header>
 <content>
@@ -48,10 +48,12 @@
                 <!-- Adapted from Tom Howard -->
                 <div class="row" id="calc-buttons">
                     <div class="row">
-                        <button class="btn btn-lg btn-default col-xs-3" onClick="go('ac');">AC</button>
-                        <button class="btn btn-lg btn-default col-xs-3" onClick="go('log');">log</button>
-                        <button class="btn btn-lg btn-default col-xs-3" onClick="go('sin');">sin</button>
-                        <button class="btn btn-lg btn-default col-xs-3" onClick="go('tan');">tan</button>
+                        <button class="btn btn-lg btn-default col-xs-4" onClick="go('ac');">AC</button>
+                        <button class="btn btn-lg btn-default col-xs-4" onClick="go('log');">log</button>
+                        <button class="btn btn-lg btn-default col-xs-4" onClick="go('sin');">sin</button>
+                        <button class="btn btn-lg btn-default col-xs-4" onClick="go('tan');">tan</button>
+                        <button class="btn btn-lg btn-default col-xs-4" onClick="go('(');">(</button>
+                        <button class="btn btn-lg btn-default col-xs-4" onClick="go(')');">)</button>
                     </div>
                     <div class="row">
                         <button class="btn btn-lg btn-default col-xs-3" onClick="go(7);">7</button>

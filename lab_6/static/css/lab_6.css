@@ -110,6 +110,16 @@ body {
     opacity: .9;
 }
 
+footer {
+    display: block;
+    position: absolute;
+    background-color: transparent; /*edit*/
+    text-align: center;
+    padding: 1rem 1rem; /*edit*/
+    color: #2b7a78;
+    width: 100%;
+}
+
 .calculator {
   margin-top: 15%;
   margin-bottom: 15%
