@@ -1,4 +1,5 @@
-themes = [{"id": 0, "text": "Red", "bcgColor": "#F44336", "fontColor": "#FAFAFA"},
+$(document).ready(function () {
+    themes = [{"id": 0, "text": "Red", "bcgColor": "#F44336", "fontColor": "#FAFAFA"},
     {"id": 1, "text": "Pink", "bcgColor": "#E91E63", "fontColor": "#FAFAFA"},
     {"id": 2, "text": "Purple", "bcgColor": "#9C27B0", "fontColor": "#FAFAFA"},
     {"id": 3, "text": "Indigo", "bcgColor": "#3F51B5", "fontColor": "#FAFAFA"},
@@ -10,7 +11,6 @@ themes = [{"id": 0, "text": "Red", "bcgColor": "#F44336", "fontColor": "#FAFAFA"
     {"id": 9, "text": "Orange", "bcgColor": "#FF5722", "fontColor": "#212121"},
     {"id": 10, "text": "Brown", "bcgColor": "#795548", "fontColor": "#FAFAFA"}];
 
-$(document).ready(function () {
     //menambahkan json yang berisi array themes
     localStorage.setItem("themes", JSON.stringify(themes));
 
@@ -28,10 +28,11 @@ $(document).ready(function () {
     var indigoTheme = arraysOfTheme[3]; //defaultTheme
     var defaultTheme = indigoTheme;
     var selectedTheme = defaultTheme;
+    var chacedTheme = defaultTheme;
 
     //kalo sebelumnya localStorage udah nyimpen selectedTheme pake yang lama
     if (localStorage.getItem("selectedTheme") !== null) {
-        var chacedTheme = JSON.parse(localStorage.getItem("selectedTheme"));
+        chacedTheme = JSON.parse(localStorage.getItem("selectedTheme"));
     }
 
     //pake yang chacedTheme

@@ -949,34 +949,34 @@ Masukkan kode berikut ke dalam `static/js/test.js`
 ## Checklist
 
 1.  Membuat Halaman Chat Box
-    1. [ ] Tambahkan _lab_6.html_ pada folder templates
-    2. [ ] Tambahkan _lab_6.css_ pada folder _./static/css_
-    3. [ ] Tambahkan file _lab_6.js_ pada folder _lab_6/static/js_
-    4. [ ] Lengkapi potongan kode pada _lab_6.js_ agar dapat berjalan
+    1. [x] Tambahkan _lab_6.html_ pada folder templates
+    2. [x] Tambahkan _lab_6.css_ pada folder _./static/css_
+    3. [x] Tambahkan file _lab_6.js_ pada folder _lab_6/static/js_
+    4. [x] Lengkapi potongan kode pada _lab_6.js_ agar dapat berjalan
 
 2. Mengimplementasikan Calculator
-    1. [ ] Tambahkan potongan kode ke dalam file _lab_6.html_ pada folder templates
-    2. [ ] Tambahkan potongan kode ke dalam file _lab_6.css_ pada folder _./static/css_
-    3. [ ] Tambahkan potongan kode ke dalam file _lab_6.js_ pada folder _lab_6/static/js_
-    4. [ ] Implementasi fungsi `AC`.
+    1. [x] Tambahkan potongan kode ke dalam file _lab_6.html_ pada folder templates
+    2. [x] Tambahkan potongan kode ke dalam file _lab_6.css_ pada folder _./static/css_
+    3. [x] Tambahkan potongan kode ke dalam file _lab_6.js_ pada folder _lab_6/static/js_
+    4. [x] Implementasi fungsi `AC`.
 
 3.  Mengimplementasikan select2
-    1. [ ] Load theme default sesuai selectedTheme
-    2. [ ] Populate data themes dari local storage ke select2
-    3. [ ] Local storage berisi themes dan selectedTheme
-    4. [ ] Warna berubah ketika theme dipilih
+    1. [x] Load theme default sesuai selectedTheme
+    2. [x] Populate data themes dari local storage ke select2
+    3. [x] Local storage berisi themes dan selectedTheme
+    4. [x] Warna berubah ketika theme dipilih
 
 4.  Pastikan kalian memiliki _Code Coverage_ yang baik
-    1. [ ]  Jika kalian belum melakukan konfigurasi untuk menampilkan _Code Coverage_ di Gitlab maka lihat langkah `Show Code Coverage in Gitlab` di [README.md](https://gitlab.com/PPW-2017/ppw-lab/blob/master/README.md).
-    2. [ ] Pastikan _Code Coverage_ kalian 100%.
+    1. [x] Jika kalian belum melakukan konfigurasi untuk menampilkan _Code Coverage_ di Gitlab maka lihat langkah `Show Code Coverage in Gitlab` di [README.md](https://gitlab.com/PPW-2017/ppw-lab/blob/master/README.md).
+    2. [x] Pastikan _Code Coverage_ kalian 100%.
 
 ###  Challenge Checklist
 1. Latihan Qunit
-    1. [ ] Implementasi dari latihan Qunit
+    1. [x] Implementasi dari latihan Qunit
 1. Cukup kerjakan salah satu nya saja:
     1. Implementasikan tombol enter pada chat box yang sudah tersedia
         1. [ ] Buatlah sebuah _Unit Test_ menggunakan Qunit
         2. [ ] Bulah fungsi yang membuat _Unit Test_ Tersebut _passed_ 
     1. Implementasikan fungsi `sin`, `log`, dan `tan`. (HTML sudah tersedia di dalam potongan kode)
-        1. [ ] Buatlah sebuah _Unit Test_ menggunakan Qunit
-        2. [ ] Bulah fungsi yang membuat _Unit Test_ Tersebut _passed_
+        1. [x] Buatlah sebuah _Unit Test_ menggunakan Qunit
+        2. [x] Bulah fungsi yang membuat _Unit Test_ Tersebut _passed_
