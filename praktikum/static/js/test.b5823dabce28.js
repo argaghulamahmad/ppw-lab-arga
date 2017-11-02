@@ -14,8 +14,6 @@ $(document).ready(function () {
     var button_log = $('button:contains("log")');
     var button_tan = $('button:contains("tan")');
 
-    var button_open_bracket = $('button:contains("(")');
-    var button_close_bracket = $('button:contains(")")');
 
     QUnit.test("Addition Test", function (assert) {
         button_8.click();
@@ -54,31 +52,22 @@ $(document).ready(function () {
     });
 
     QUnit.test("Sin Test", function (assert) {
-        button_sin.click();
-        button_open_bracket.click();
         button_8.click();
-        button_close_bracket.click();
-        button_res.click();
+        button_sin.click();
         assert.equal($('#print').val(), 0.9893582466233818, "sin 8 must be 0.9893582466233818");
         button_clear.click();
     });
 
     QUnit.test("Tan Test", function (assert) {
-        button_tan.click();
-        button_open_bracket.click();
         button_8.click();
-        button_close_bracket.click();
-        button_res.click();
+        button_tan.click();
         assert.equal($('#print').val(), -6.799711455220379, "tan 8 must be -6.799711455220379");
         button_clear.click();
     });
 
     QUnit.test("Log Test", function (assert) {
-        button_log.click();
-        button_open_bracket.click();
         button_8.click();
-        button_close_bracket.click();
-        button_res.click();
+        button_log.click();
         assert.equal($('#print').val(), 2.0794415416798357, "log 8 must be 2.0794415416798357");
         button_clear.click();
     });

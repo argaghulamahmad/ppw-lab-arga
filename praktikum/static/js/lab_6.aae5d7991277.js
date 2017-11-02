@@ -11,43 +11,27 @@ themes = [{"id": 0, "text": "Red", "bcgColor": "#F44336", "fontColor": "#FAFAFA"
     {"id": 10, "text": "Brown", "bcgColor": "#795548", "fontColor": "#FAFAFA"}];
 
 $(document).ready(function () {
-    //menambahkan json yang berisi array themes
     localStorage.setItem("themes", JSON.stringify(themes));
 
-    //inisiasi variabel mySelect
     mySelect = $('.my-select').select2();
 
-    //populate data pada mySelect
     mySelect.select2({
         'data': JSON.parse(localStorage.getItem("themes")
         )
     });
 
-    //ambil dan parsing data 'themes' dari localStorage
-    var arraysOfTheme = JSON.parse(localStorage.getItem("themes"));
-    var indigoTheme = arraysOfTheme[3]; //defaultTheme
-    var defaultTheme = indigoTheme;
-    var selectedTheme = defaultTheme;
+    var arraysOfTheme = JSON.parse(localStorage.getItem("themes");
+    var indigoTheme = arraysOfTheme[3];
 
-    //kalo sebelumnya localStorage udah nyimpen selectedTheme pake yang lama
-    if (localStorage.getItem("selectedTheme") !== null) {
-        var chacedTheme = JSON.parse(localStorage.getItem("selectedTheme"));
-    }
-
-    //pake yang chacedTheme
-    selectedTheme = chacedTheme;
-
-    //ganti css sesuai theme yang dipilih (selectedTheme)
     $('body').css(
         {
-            "background-color": selectedTheme.bcgColor,
-            "font-color": selectedTheme.fontColor
+            "background-color": indigoTheme.bcgColor,
+            "font-color": indigoTheme.fontColor,
         }
     );
 
     //Chat box
     var arrowDirection = "down";
-    //animasi biar bisa ke atas dan ke bawah chatbox nya
     $('#expand-arrow-button').click(function () {
         $('.chat-body').toggle();
         if (arrowDirection === "down") {
@@ -61,7 +45,6 @@ $(document).ready(function () {
     });
 
     var cls = "msg-receive";
-    //nambahin chat text setelah di tekan 'enter'
     $('#msg-text-area').keypress(function (e) {
         if (e.which == 13) {
             var msg = $('#msg-text-area').val();
@@ -78,7 +61,6 @@ $(document).ready(function () {
         }
     });
 
-    //reset ulang text-area chat setelah enter
     $('#msg-text-area').keyup(function (e) {
         if (e.which == 13) {
             $('#msg-text-area').val("");
@@ -86,26 +68,16 @@ $(document).ready(function () {
     });
     //END
 
-    //terapkan tema apabila tombol 'apply' ditekan
-    $('.apply-button').on('click', function () {
-        //id theme yang dipilih
-        var idThemeChoosed = mySelect.val();
+    $('.apply-button').on('click', function () {  // sesuaikan class button
+        // [TODO] ambil value dari elemen select .my-select
 
-        //bila cocok
-        if (idThemeChoosed < arraysOfTheme.length) {
-            selectedTheme = arraysOfTheme[idThemeChoosed];
-        }
+        // [TODO] cocokan ID theme yang dipilih dengan daftar theme yang ada
 
-        //ganti css sesuai theme yang dipilih
-        $('body').css(
-            {
-                "background-color": selectedTheme.bcgColor,
-                "font-color": selectedTheme.fontColor
-            }
-        );
+        // [TODO] ambil object theme yang dipilih
 
-        //simpan 'selectedTheme' di localStorage
-        localStorage.setItem("selectedTheme", JSON.stringify(selectedTheme));
+        // [TODO] aplikasikan perubahan ke seluruh elemen HTML yang perlu diubah warnanya
+
+        // [TODO] simpan object theme tadi ke local storage selectedTheme
     })
 });
 
@@ -117,27 +89,18 @@ var go = function (x) {
     if (x === 'ac') {
         print.value = "";
     } else if (x === 'eval') {
-        if (print.value.includes('sin') || print.value.includes('tan') || print.value.includes('log')) {
-            var idxOpen = print.value.indexOf('(');
-            var idxClose = print.value.indexOf(')');
-            if (print.value.includes('sin')) {
-                print.value = Math.sin(print.value.substring(idxOpen+1, idxClose));
-            } else if (print.value.includes('tan')) {
-                print.value = Math.tan(print.value.substring(idxOpen+1, idxClose));
-            } else if (print.value.includes('log')) {
-                print.value = Math.log(print.value.substring(idxOpen+1, idxClose));
-            }
-            erase = true;
-        } else {
-            print.value = Math.round(evil(print.value) * 10000) / 10000;
-            erase = true;
-        }
-
+        print.value = Math.round(evil(print.value) * 10000) / 10000;
+        erase = true;
+    } else if (x === 'sin') {
+        print.value = Math.sin(print.value);
+        erase = true;
+    } else if (x === 'tan') {
+        print.value = Math.tan(print.value);
+        erase = true;
+    } else if (x === 'log') {
+        print.value = Math.log(print.value);
+        erase = true;
     } else {
-        if (erase) {
-            print.value = "";
-            erase = false;
-        }
         print.value += x;
     }
 };
@@ -145,4 +108,5 @@ var go = function (x) {
 function evil(fn) {
     return new Function('return ' + fn)();
 }
+
 // END

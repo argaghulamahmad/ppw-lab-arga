@@ -117,26 +117,15 @@ var go = function (x) {
     if (x === 'ac') {
         print.value = "";
     } else if (x === 'eval') {
-        if (print.value.includes('sin') || print.value.includes('tan') || print.value.includes('log')) {
-            var idxOpen = print.value.indexOf('(');
-            var idxClose = print.value.indexOf(')');
-            if (print.value.includes('sin')) {
-                print.value = Math.sin(print.value.substring(idxOpen+1, idxClose));
-            } else if (print.value.includes('tan')) {
-                print.value = Math.tan(print.value.substring(idxOpen+1, idxClose));
-            } else if (print.value.includes('log')) {
-                print.value = Math.log(print.value.substring(idxOpen+1, idxClose));
-            }
-            erase = true;
-        } else {
-            print.value = Math.round(evil(print.value) * 10000) / 10000;
-            erase = true;
-        }
-
+        print.value = Math.round(evil(print.value) * 10000) / 10000;
+        erase = true;
     } else {
-        if (erase) {
-            print.value = "";
-            erase = false;
+        if (x === 'log') {
+            print.value += 'log ';
+        } else if (x === 'sin') {
+            print.value += 'sin ';
+        } else if (x === 'tan') {
+            print.value += 'tan ';
         }
         print.value += x;
     }
