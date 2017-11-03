@@ -144,3 +144,7 @@ footer {
 .calculator .btn {
   border-radius: 0;
 }
+
+#apply-theme-area {
+    padding-top: 60px;
+}
