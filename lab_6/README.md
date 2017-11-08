@@ -772,7 +772,8 @@ Langkah:
     
     ```
     Kode tersebut diperlukan untuk melakukan inisiasi select2 ke elemen ```<select>``` yang dituju. Pastikan bahwa class sesuai.
-1. Lakukan inisiasi data themes dan selected theme Simpan data JSON berikut untuk ke Local Storage.
+1. Lakukan inisiasi data JSON themes dan selected theme di Local Storage.
+    
     `themes`
     
     ```java
