@@ -1,0 +1,24 @@
+body{
+   margin-top: 70px;
+}
+/* Custom navbar style */
+.navbar-static-top {
+   margin-bottom: 19px;
+}
+.navbar-default .navbar-nav>li>a {
+   cursor: pointer;
+}
+/* Textarea not resizeable */
+textarea {
+   resize:none
+}
+
+footer {
+    display: block;
+    position: absolute;
+    background-color: transparent; /*edit*/
+    text-align: center;
+    padding: 1rem 1rem; /*edit*/
+    color: #2b7a78;
+    width: 100%;
+}
