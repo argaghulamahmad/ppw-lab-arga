@@ -27,23 +27,23 @@
         </div>
     </section>
 {% endblock %}
-{#{% block javascript %}#}
-{#    <script>#}
-{#        $(document).ready(function () {#}
-{#             lengkapi pemanggilan ajax berikut untuk mengambil daftar teman yang ada di database #}
-{#            $.ajax({#}
-{#                method: "GET",#}
-{#                url: "{% url "lab-7:get-friend-list-json" %}",#}
-{#                success: function (response) {#}
-{#                    friend_list = json.parse(response);#}
-{#                    for (friend in friend_list) {#}
-{#                        $('#friend-list').append("<a class=\"list-group-item\">" + + "<span class=\"pull-right\">" + + "</span></a>")#}
-{#                    }#}
-{#                },#}
-{#                error: function (error) {#}
-{##}
-{#                }#}
-{#            });#}
-{#        });#}
-{#    </script>#}
-{#{% endblock %}#}
+{% block javascript %}
+    <script>
+        $(document).ready(function () {
+             lengkapi pemanggilan ajax berikut untuk mengambil daftar teman yang ada di database
+            $.ajax({
+                method: "GET",
+                url: "{% url "lab-7:get-friend-list-json" %}",
+                success: function (response) {
+                    friend_list = json.parse(response);
+                    for (friend in friend_list) {
+                        $('#friend-list').append("<a class=\"list-group-item\">" + + "<span class=\"pull-right\">" + + "</span></a>")
+                    }
+                },
+                error: function (error) {
+
+                }
+            });
+        });
+    </script>
+{% endblock %}

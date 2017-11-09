@@ -31,6 +31,8 @@ def friend_list(request):
     html = 'lab_7/daftar_teman.html'
     return render(request, html, response)
 
+
+
 @csrf_exempt
 def add_friend(request):
     if request.method == 'POST':
