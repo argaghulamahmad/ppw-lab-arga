@@ -24,18 +24,19 @@ import lab_3.urls as lab_3
 import lab_4.urls as lab_4
 import lab_5.urls as lab_5
 import lab_6.urls as lab_6
-
+import lab_7.urls as lab_7
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^lab-1/', include(lab_1,namespace='lab-1')),
-    url(r'^lab-2/', include(lab_2,namespace='lab-2')),
-    url(r'^lab-2-addon/', include(lab_2_addon,namespace='lab-2-addon')),
-    url(r'^lab-3/', include(lab_3,namespace='lab-3')),
+    url(r'^lab-1/', include(lab_1, namespace='lab-1')),
+    url(r'^lab-2/', include(lab_2, namespace='lab-2')),
+    url(r'^lab-2-addon/', include(lab_2_addon, namespace='lab-2-addon')),
+    url(r'^lab-3/', include(lab_3, namespace='lab-3')),
     # url(r'^$', RedirectView.as_view(permanent= True, url='/lab-2/'), name='index'),
-    url(r'^$', RedirectView.as_view(permanent= True, url='/lab-4/'), name='index'),
+    url(r'^$', RedirectView.as_view(permanent=True, url='/lab-4/'), name='index'),
     url(r'^lab-4/', include(lab_4, namespace='lab-4')),
     url(r'^lab-5/', include(lab_5, namespace='lab-5')),
     url(r'^lab-6/', include(lab_6, namespace='lab-6')),
+    url(r'^lab-7/', include(lab_7, namespace='lab-7')),
     # url(r'^$', index_lab2, name='index'),
 ]
