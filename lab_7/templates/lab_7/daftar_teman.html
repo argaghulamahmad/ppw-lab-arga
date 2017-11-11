@@ -1,26 +1,35 @@
 {% extends "lab_7/layout/base.html" %}
 
 {% block content %}
+    <style>
+        a.list-group-item {
+            overflow: hidden;
+        }
+
+        a.list-group-item > div {
+            vertical-align: middle;
+        }
+    </style>
     <section name="friend-list" id="friend-list">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-lg-8">
                     <h2> Friend Fasilkom</h2>
-                    <div id="friend-list" class="list-group">
-                        {% if friend_list %}
+                    <div id="friend-list-container" class="list-group">
+                        {% comment %}{% if friend_list %}
                             {% for friend in friend_list %}
                                 <a class="list-group-item">
                                     {{ friend.friend_name }}
                                     <span class="pull-right">
-                                         ({{ friend.npm }})
-                                    </span>
+                                                 ({{ friend.npm }})
+                                            </span>
                                 </a>
                             {% endfor %}
                         {% else %}
                             <div class="alert alert-danger text-center">
                                 <strong>Opps!</strong> Tidak ada teman
                             </div>
-                        {% endif %}
+                        {% endif %}{% endcomment %}
                     </div>
                 </div>
             </div>
@@ -30,18 +39,28 @@
 {% block javascript %}
     <script>
         $(document).ready(function () {
-             lengkapi pemanggilan ajax berikut untuk mengambil daftar teman yang ada di database
             $.ajax({
                 method: "GET",
                 url: "{% url "lab-7:get-friend-list-json" %}",
-                success: function (response) {
-                    friend_list = json.parse(response);
-                    for (friend in friend_list) {
-                        $('#friend-list').append("<a class=\"list-group-item\">" + + "<span class=\"pull-right\">" + + "</span></a>")
+                success: function (data) {
+                    parsed_data = JSON.parse(data['friends_json']);
+                    if (parsed_data.length === 0) {
+                        $('#friend-list-container').append("<div class=\"alert alert-danger text-center\">" + "<strong>Opps!</strong> Tidak ada teman" + "</div>")
+                    } else {
+                        for (i = 0; i < parsed_data.length; i++) {
+                            friend = parsed_data[i];
+                            $('#friend-list-container').append(
+                                "<a class=\"list-group-item\">"
+                                + friend["fields"]["friend_name"]
+                                + "<span class=\"pull-right\">" + "<button type=\"button\" class=\"btn btn-danger\"> Delete </button>" + "</span>"
+                                + "<span class=\"pull-center\">" + " (" + friend["fields"]["npm"] + ")" + "</span>"
+                                + "</a>"
+                            );
+                        }
                     }
                 },
                 error: function (error) {
-
+                    alert("Data json tidak valid!")
                 }
             });
         });

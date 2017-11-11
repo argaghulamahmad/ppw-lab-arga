@@ -28,10 +28,16 @@ def index(request):
 def friend_list(request):
     friend_list = Friend.objects.all()
     response['friend_list'] = friend_list
+    response['author'] = "Arga Ghulam Ahmad"
     html = 'lab_7/daftar_teman.html'
     return render(request, html, response)
 
-
+def get_friend_list_objects_json(request):
+    friends_json = serializers.serialize("json", Friend.objects.all())
+    data = {
+        'friends_json': friends_json
+    }
+    return JsonResponse(data)
 
 @csrf_exempt
 def add_friend(request):
