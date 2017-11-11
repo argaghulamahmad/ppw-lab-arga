@@ -39,6 +39,31 @@
 {% block javascript %}
     <script>
         $(document).ready(function () {
+            getFriendList();
+        });
+
+        var deleteFriend = function (friend_id) {
+            friend_id = $("#delete_friend_button").attr("pk");
+            friend_id.replace(/[^0-9]/g, '');
+
+            $.ajax({
+                method: "POST",
+                url: '{% url "lab-7:delete-friend" %}',
+                data: {
+                    'friend_id': friend_id
+                },
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data.friend_id);
+                    if (data.success) {
+                        selectorToDelete = "[pk=" + data.friend_id + "]";
+                        $(selectorToDelete).parent().parent().remove();
+                    }
+                }
+            });
+        };
+
+        var getFriendList = function () {
             $.ajax({
                 method: "GET",
                 url: "{% url "lab-7:get-friend-list-json" %}",
@@ -49,11 +74,16 @@
                     } else {
                         for (i = 0; i < parsed_data.length; i++) {
                             friend = parsed_data[i];
+                            friend_name = friend["fields"]["friend_name"];
+                            friend_npm = friend["fields"]["npm"];
+                            friend_id = friend["pk"];
                             $('#friend-list-container').append(
                                 "<a class=\"list-group-item\">"
-                                + friend["fields"]["friend_name"]
-                                + "<span class=\"pull-right\">" + "<button type=\"button\" class=\"btn btn-danger\"> Delete </button>" + "</span>"
-                                + "<span class=\"pull-center\">" + " (" + friend["fields"]["npm"] + ")" + "</span>"
+                                + friend_name
+                                + "<span class=\"pull-right\">"
+                                + "<button pk=\"" + friend_id + "\" onclick=\"deleteFriend()\" type=\"button\" class=\"btn btn-danger\" id=\"delete_friend_button\"> Delete </button>"
+                                + "</span>"
+                                + "<span class=\"pull-center\">" + " (" + friend_npm + ")" + "</span>"
                                 + "</a>"
                             );
                         }
@@ -63,6 +93,6 @@
                     alert("Data json tidak valid!")
                 }
             });
-        });
+        };
     </script>
 {% endblock %}

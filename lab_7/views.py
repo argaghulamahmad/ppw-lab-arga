@@ -49,11 +49,17 @@ def add_friend(request):
         data = model_to_dict(friend)
         return HttpResponse(data)
 
+@csrf_exempt
+def delete_friend(request):
+    if request.method == 'POST':
+        friend_id = request.POST.get('friend_id', None)
+        Friend.objects.filter(id=friend_id).delete()
+        data = {
+            'success': True,
+            'friend_id': friend_id
+        }
 
-def delete_friend(request, friend_id):
-    Friend.objects.filter(id=friend_id).delete()
-    return HttpResponseRedirect('/lab-7/')
-
+        return JsonResponse(data)
 
 @csrf_exempt
 def validate_npm(request):
