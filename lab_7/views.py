@@ -56,7 +56,7 @@ def delete_friend(request):
         Friend.objects.filter(id=friend_id).delete()
         data = {
             'success': True,
-            'friend_id': friend_id
+            'friend_id': friend_id,
         }
 
         return JsonResponse(data)

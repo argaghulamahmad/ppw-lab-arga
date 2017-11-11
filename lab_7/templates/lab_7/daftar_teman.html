@@ -42,10 +42,8 @@
             getFriendList();
         });
 
+        {# fungsi untuk menghapus teman pada database melalui button ber'id' delete_friend_button #}
         var deleteFriend = function (friend_id) {
-            friend_id = $("#delete_friend_button").attr("pk");
-            friend_id.replace(/[^0-9]/g, '');
-
             $.ajax({
                 method: "POST",
                 url: '{% url "lab-7:delete-friend" %}',
@@ -56,8 +54,9 @@
                 success: function (data) {
                     console.log(data.friend_id);
                     if (data.success) {
+                        console.log(data.friend_id);
                         selectorToDelete = "[pk=" + data.friend_id + "]";
-                        $(selectorToDelete).parent().parent().remove();
+                        $(selectorToDelete).remove();
                     }
                 }
             });
@@ -78,10 +77,10 @@
                             friend_npm = friend["fields"]["npm"];
                             friend_id = friend["pk"];
                             $('#friend-list-container').append(
-                                "<a class=\"list-group-item\">"
+                                "<a pk=\"" + friend_id + "\" class=\"list-group-item\">"
                                 + friend_name
                                 + "<span class=\"pull-right\">"
-                                + "<button pk=\"" + friend_id + "\" onclick=\"deleteFriend()\" type=\"button\" class=\"btn btn-danger\" id=\"delete_friend_button\"> Delete </button>"
+                                + "<button \" onClick=\"deleteFriend(" + friend_id + ")\" type=\"button\" class=\"btn btn-danger\" id=\"delete_friend_button\"> Delete </button>"
                                 + "</span>"
                                 + "<span class=\"pull-center\">" + " (" + friend_npm + ")" + "</span>"
                                 + "</a>"
