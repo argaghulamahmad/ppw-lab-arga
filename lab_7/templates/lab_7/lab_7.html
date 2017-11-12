@@ -90,8 +90,9 @@
                 url: "{% url "lab-7:add-friend" %}",
                 data: {name: nama, npm: npm},
                 success: function (friend) {
+                    obj_friend = JSON.parse(friend);
                     html = '<a class="list-group-item clearfix">' +
-                        friend.friend_name +
+                        obj_friend.friend_name + " (" + obj_friend.npm + ") " +
                         '</a>';
                     $("#friend-list").append(html)
                 },
