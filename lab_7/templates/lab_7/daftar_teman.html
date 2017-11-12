@@ -58,6 +58,9 @@
                         selectorToDelete = "[pk=" + data.friend_id + "]";
                         $(selectorToDelete).remove();
                     }
+                    if ($("#friend-list-container").children().length === 0) {
+                        $("#friend-list-container").append("<div class=\"alert alert-danger text-center\">" + "<strong>Opps!</strong> Tidak ada teman" + "</div>");
+                    }
                 }
             });
         };
