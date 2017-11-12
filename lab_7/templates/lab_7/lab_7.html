@@ -25,14 +25,18 @@
                         {% endif %}
                     </div>
                     <div id="pagination-button-area">
+                        {% if previous_url != -1 %}
                         <span class="pull-left">
                             <button onclick="goNextOrPrevious(value)" value="{{ previous_url }}" id="previous-button" type="button"
                                     class="btn btn-default">Previous</button>
                         </span>
+                        {% endif %}
+                        {% if next_url != -1 %}
                         <span class="pull-right">
                             <button onclick="goNextOrPrevious(value)" value="{{ next_url }}" id="next-button" type="button"
                                     class="btn btn-default">Next</button>
                         </span>
+                        {% endif %}
                     </div>
                 </div>
                 <br>
@@ -67,17 +71,7 @@
 {% block javascript %}
     <script>
         $(document).ready(function () {
-            checkPagination()
         });
-
-        var checkPagination = function () {
-            if ($("#previous-button").value === "None") {
-                $('#previous-button').remove();
-            }
-            if ($("#next-button").value === "None") {
-                $('#next-button').remove();
-            }
-        };
 
         var goNextOrPrevious = function (buttonUrl) {
             $.ajax({
