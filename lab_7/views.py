@@ -64,10 +64,16 @@ def add_friend(request):
     if request.method == 'POST':
         name = request.POST['name']
         npm = request.POST['npm']
-        friend = Friend(friend_name=name, npm=npm)
-        friend.save()
-        data = model_to_dict(friend)
-        return HttpResponse(data)
+        friend_list = Friend.objects.all()
+        is_taken = False
+        for friend in friend_list:
+            if friend.npm == npm:
+                is_taken = True
+        if not is_taken:
+            friend = Friend(friend_name=name, npm=npm)
+            friend.save()
+            data = model_to_dict(friend)
+            return HttpResponse(data)
 
 
 @csrf_exempt
