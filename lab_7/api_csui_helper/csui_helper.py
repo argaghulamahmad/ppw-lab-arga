@@ -50,6 +50,10 @@ class CSUIhelper:
             mahasiswa_list = response.json()["results"]
             return mahasiswa_list
 
+        def get_siakng_mahasiswalist_data(self):
+            response = requests.get(API_MAHASISWA_LIST_URL,
+                                    params={"access_token": self.access_token, "client_id": self.client_id})
+            return response
     instance = None
 
     def __init__(self, SSO_USERNAME, SSO_PASSWORD):

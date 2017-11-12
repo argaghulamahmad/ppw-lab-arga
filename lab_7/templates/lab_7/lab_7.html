@@ -24,6 +24,14 @@
                             </div>
                         {% endif %}
                     </div>
+                    <div id="pagination-button-area">
+                        <span class="pull-left">
+                            <button id="previous-button" url="{{ previous_url }}" type="button" class="btn btn-default">Previous</button>
+                        </span>
+                        <span class="pull-right">
+                            <button id="next-button" url="{{ next_url }}" type="button" class="btn btn-default">Next</button>
+                        </span>
+                    </div>
                 </div>
                 <div class="col-lg-4">
                     <h2> Teman Saya </h2>
@@ -55,6 +63,10 @@
 {% endblock %}
 {% block javascript %}
     <script>
+        $(document).ready(function () {
+            setPaginationUrl();
+        });
+
         var addFriend = function (nama, npm) {
             $.ajax({
                 method: "POST",

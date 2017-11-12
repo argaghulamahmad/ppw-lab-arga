@@ -18,9 +18,14 @@ def index(request):
     # TODO berikan akses token dari backend dengan menggunakaan helper yang ada
 
     mahasiswa_list = csui_helper.instance.get_mahasiswa_list()
+    siakng_mahasiswalist_data = csui_helper.instance.get_siakng_mahasiswalist_data()
+
+    previous_url = siakng_mahasiswalist_data.json()['previous']
+    next_url = siakng_mahasiswalist_data.json()['next']
 
     friend_list = Friend.objects.all()
-    response = {"mahasiswa_list": mahasiswa_list, "friend_list": friend_list, "author": "Arga Ghulam Ahmad"}
+    response = {"mahasiswa_list": mahasiswa_list, "friend_list": friend_list, "author": "Arga Ghulam Ahmad",
+                "next_url": next_url, "previous_url": previous_url}
     html = 'lab_7/lab_7.html'
     return render(request, html, response)
 
@@ -32,12 +37,14 @@ def friend_list(request):
     html = 'lab_7/daftar_teman.html'
     return render(request, html, response)
 
+
 def get_friend_list_objects_json(request):
     friends_json = serializers.serialize("json", Friend.objects.all())
     data = {
         'friends_json': friends_json
     }
     return JsonResponse(data)
+
 
 @csrf_exempt
 def add_friend(request):
@@ -48,6 +55,7 @@ def add_friend(request):
         friend.save()
         data = model_to_dict(friend)
         return HttpResponse(data)
+
 
 @csrf_exempt
 def delete_friend(request):
@@ -60,6 +68,7 @@ def delete_friend(request):
         }
 
         return JsonResponse(data)
+
 
 @csrf_exempt
 def validate_npm(request):
