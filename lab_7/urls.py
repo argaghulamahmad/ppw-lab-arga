@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^delete-friend/$', delete_friend, name='delete-friend'),
     url(r'^get-friend-list/$', friend_list, name='get-friend-list'),
     url(r'^get-friend-list-json/$', get_friend_list_objects_json, name='get-friend-list-json'),
+    url(r'^index$', index, name='index-parameter'),
 ]

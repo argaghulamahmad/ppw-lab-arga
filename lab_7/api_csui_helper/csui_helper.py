@@ -2,10 +2,11 @@ import requests
 import os
 import environ
 
-root = environ.Path(__file__) - 3 # three folder back (/a/b/c/ - 3 = /)
-env = environ.Env(DEBUG=(bool, False),)
+root = environ.Path(__file__) - 3  # three folder back (/a/b/c/ - 3 = /)
+env = environ.Env(DEBUG=(bool, False), )
 environ.Env.read_env('.env')
 API_MAHASISWA_LIST_URL = "https://api.cs.ui.ac.id/siakngcs/mahasiswa-list/"
+
 
 class CSUIhelper:
     class __CSUIhelper:
@@ -14,6 +15,7 @@ class CSUIhelper:
             self.password = env("SSO_PASSWORD")
             self.client_id = 'X3zNkFmepkdA47ASNMDZRX3Z9gqSU1Lwywu5WepG'
             self.access_token = self.get_access_token()
+            self.current_page_number = 1
 
         def get_access_token(self):
             try:
@@ -30,7 +32,9 @@ class CSUIhelper:
 
                 return response.json()["access_token"]
             except Exception:
-                raise Exception("username atau password sso salah, input : [{}, {}] {}".format(self.username, self.password, os.environ.items()))
+                raise Exception(
+                    "username atau password sso salah, input : [{}, {}] {}".format(self.username, self.password,
+                                                                                   os.environ.items()))
 
         def get_client_id(self):
             return self.client_id
@@ -46,14 +50,20 @@ class CSUIhelper:
 
         def get_mahasiswa_list(self):
             response = requests.get(API_MAHASISWA_LIST_URL,
-                                    params={"access_token": self.access_token, "client_id": self.client_id})
+                                    params={"access_token": self.access_token, "client_id": self.client_id,
+                                            "page": self.current_page_number})
             mahasiswa_list = response.json()["results"]
             return mahasiswa_list
 
         def get_siakng_mahasiswalist_data(self):
             response = requests.get(API_MAHASISWA_LIST_URL,
-                                    params={"access_token": self.access_token, "client_id": self.client_id})
+                                    params={"access_token": self.access_token, "client_id": self.client_id,
+                                            "page": self.current_page_number})
             return response
+
+        def set_current_page(self, page_number):
+            self.current_page_number = page_number
+
     instance = None
 
     def __init__(self, SSO_USERNAME, SSO_PASSWORD):

@@ -26,13 +26,16 @@
                     </div>
                     <div id="pagination-button-area">
                         <span class="pull-left">
-                            <button id="previous-button" url="{{ previous_url }}" type="button" class="btn btn-default">Previous</button>
+                            <button onclick="goNextOrPrevious(value)" value="{{ previous_url }}" id="previous-button" type="button"
+                                    class="btn btn-default">Previous</button>
                         </span>
                         <span class="pull-right">
-                            <button id="next-button" url="{{ next_url }}" type="button" class="btn btn-default">Next</button>
+                            <button onclick="goNextOrPrevious(value)" value="{{ next_url }}" id="next-button" type="button"
+                                    class="btn btn-default">Next</button>
                         </span>
                     </div>
                 </div>
+                <br>
                 <div class="col-lg-4">
                     <h2> Teman Saya </h2>
                     <div class="list-group" id="friend-list">
@@ -64,8 +67,26 @@
 {% block javascript %}
     <script>
         $(document).ready(function () {
-            setPaginationUrl();
+            checkPagination()
         });
+
+        var checkPagination = function () {
+            if ($("#previous-button").value === "None") {
+                $('#previous-button').remove();
+            }
+            if ($("#next-button").value === "None") {
+                $('#next-button').remove();
+            }
+        };
+
+        var goNextOrPrevious = function (buttonUrl) {
+            $.ajax({
+                method: "POST",
+                url: "{% url "lab-7:index" %}",
+                data: {buttonUrl: buttonUrl}
+            });
+            location.reload();
+        };
 
         var addFriend = function (nama, npm) {
             $.ajax({
