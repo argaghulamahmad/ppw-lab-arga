@@ -30,7 +30,7 @@ class Lab7UnitTest(TestCase):
     def test_wrong_username_password(self):
         csui_helper = CSUIhelper("wrongusername",
                                  "wrongpassword")
-        csui_helper.instance.username = "wrongusername"
+        csui_helper.instance.username = "arga.ghulam"
         csui_helper.instance.password = "wrongpassword"
         csui_helper.instance.get_access_token()
 
