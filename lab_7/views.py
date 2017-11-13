@@ -43,6 +43,19 @@ def index(request):
     return render(request, html, response)
 
 
+def friend_description(request, index):
+    index_number = int(index)
+    siakng_mahasiswalist_data = csui_helper.instance.get_siakng_mahasiswalist_data()
+    npm_mahasiswa = siakng_mahasiswalist_data.json()['results'][index_number]['npm']
+    nama_mahasiswa = siakng_mahasiswalist_data.json()['results'][index_number]['nama']
+    alamat_mahasiswa = siakng_mahasiswalist_data.json()['results'][index_number]['alamat_mhs']
+    response = {
+        "npm": npm_mahasiswa, "nama": nama_mahasiswa, "alamat": alamat_mahasiswa, "author": "Arga Ghulam Ahmad"
+    }
+    html = 'lab_7/deskripsi_teman.html'
+    return render(request, html, response)
+
+
 def friend_list(request):
     friend_list = Friend.objects.all()
     response['friend_list'] = friend_list

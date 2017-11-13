@@ -1,0 +1,65 @@
+{% extends "lab_7/layout/base.html" %}
+
+{% block content %}
+    <section name="friend-list" class="friend-list">
+        <div class="container">
+            <div class="panel panel-default">
+                <div class="panel-heading">Nama Mahasiswa</div>
+                <div class="panel-body">
+                    <h4>{{ nama }}</h4>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">NPM Mahasiswa</div>
+                <div class="panel-body">
+                    <h4>{{ npm }}</h4>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">Alamat Mahasiswa</div>
+                <div class="panel-body">
+                    <h4 id="address">{{ alamat }}</h4>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="panel panel-default">
+                <div class="panel-heading">Map</div>
+                <div class="panel-body">
+                    <div id="googleMap" style="width:1100px; height:600px; margin: 50px 0"></div>
+                </div>
+            </div>
+        </div>
+        <div>
+        </div>
+    </section>
+{% endblock %}
+{% block javascript %}
+    <script>
+        console.log($("#address").text());
+        var address = $("#address").text();
+
+        function initMap() {
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({'address': address}, function (results, status) {
+                if (status === google.maps.GeocoderStatus.OK) {
+                    var propertiPeta = {
+                        center: results[0].geometry.location,
+                        zoom: 15,
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                    };
+                    var peta = new google.maps.Map(document.getElementById("googleMap"), propertiPeta);
+                    var marker = new google.maps.Marker({
+                        map: peta,
+                        position: results[0].geometry.location
+                    });
+                } else {
+                    var html = '<div class="alert alert-danger text-center">' +
+                        'Lokasi tidak ditemukan!' +
+                        '</div>';
+                    $("#googleMap").append(html)
+                }
+            });
+        }
+    </script>
+{% endblock %}

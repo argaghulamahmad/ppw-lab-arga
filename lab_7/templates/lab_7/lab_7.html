@@ -8,10 +8,13 @@
                     <div class="list-group">
                         {% if mahasiswa_list %}
                             {% for mahasiswa in mahasiswa_list %}
-                                <a class="list-group-item clearfix">
-                                    {{ mahasiswa.nama }} ({{ mahasiswa.npm }})
+                                <a class="list-group-item clearfix" id="mahasiswa-idx-{{ forloop.counter0 }}">
+                                    <button type="button" class="btn btn-info"
+                                            onClick="getFriendDescription({{ forloop.counter0 }})">{{ mahasiswa.nama }}
+                                        ({{ mahasiswa.npm }})
+                                    </button>
                                     <span class="pull-right">
-                                    <span class="btn btn-xs btn-default"
+                                    <span class="btn btn-md btn-success"
                                           onClick="addFriend('{{ mahasiswa.nama }}', '{{ mahasiswa.npm }}')">
                                         Tambah sebagai teman
                                     </span>
@@ -97,7 +100,7 @@
                     if (data.length === 0) {
                         alert("Mahasiswa tersebut sudah ditambahkan sebagai teman");
                     }
-                    {# bila belum ada nom tersebut dalam database friend #}
+                        {# bila belum ada nom tersebut dalam database friend #}
                     else {
                         obj_friend = JSON.parse(data);
                         html = '<a class="list-group-item clearfix">' +
@@ -137,5 +140,11 @@
                 }
             });
         });
+
+
+        var getFriendDescription = function (id) {
+            console.log(id);
+            window.open('friend-description/'+id+'/', '_self');
+        };
     </script>
 {% endblock %}
