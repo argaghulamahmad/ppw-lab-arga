@@ -17,4 +17,3 @@ six==1.10.0
 whitenoise==3.3.0
 wrapt==1.10.11
 environ
-requests
