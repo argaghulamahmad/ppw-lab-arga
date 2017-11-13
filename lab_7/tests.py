@@ -14,10 +14,6 @@ class Lab7UnitTest(TestCase):
             friend_name="ARGA GHULAM AHMAD", npm="1606821601"
         )
 
-    # def test_lab_7_url_is_exist(self):
-    #     response = Client().get('/lab-7/')
-    #     self.assertEqual(response.status_code, 200)
-
     def test_lab_7_using_index_func(self):
         found = resolve('/lab-7/')
         self.assertEqual(found.func, index)
@@ -28,11 +24,14 @@ class Lab7UnitTest(TestCase):
         })
 
     def test_wrong_username_password(self):
-        csui_helper = CSUIhelper("wrongusername",
-                                 "wrongpassword")
-        csui_helper.instance.username = "arga.ghulam"
-        csui_helper.instance.password = "wrongpassword"
-        csui_helper.instance.get_access_token()
+        username = "arga.ghulam"
+        password = "wrongpassword"
+        csui_helper = CSUIhelper(username, password)
+        csui_helper.instance.username = username
+        csui_helper.instance.password = password
+        with self.assertRaises(Exception) as context:
+            csui_helper.instance.get_access_token()
+        self.assertIn("arga.ghulam", str(context.exception))
 
     def test_get_client_id(self):
         csui_helper = CSUIhelper(os.environ.get("SSO_USERNAME"),
@@ -50,8 +49,7 @@ class Lab7UnitTest(TestCase):
         csui_helper = CSUIhelper(os.environ.get("SSO_USERNAME"),
                                  os.environ.get("SSO_PASSWORD"))
         dict = csui_helper.instance.get_auth_param_dict()
-        # self.assertEqual(dict['access_token'], csui_helper.instance.access_token)
-        # self.assertEqual(dict['client_id'], csui_helper.instance.client_id)
+        self.assertEqual(dict['client_id'], csui_helper.instance.get_auth_param_dict()['client_id'])
 
     def test_friend_list(self):
         response = Client().get('/lab-7/get-friend-list/')
