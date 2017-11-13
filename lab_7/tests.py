@@ -22,6 +22,8 @@ class Lab7UnitTest(TestCase):
         response = self.client.post('/lab-7/index', {
             'buttonUrl': 2
         })
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'lab_7/lab_7.html')
 
     def test_wrong_username_password(self):
         username = "arga.ghulam"
@@ -32,11 +34,6 @@ class Lab7UnitTest(TestCase):
         with self.assertRaises(Exception) as context:
             csui_helper.instance.get_access_token()
         self.assertIn("arga.ghulam", str(context.exception))
-
-    def test_get_client_id(self):
-        csui_helper = CSUIhelper(os.environ.get("SSO_USERNAME"),
-                                 os.environ.get("SSO_PASSWORD"))
-        # self.assertEqual(csui_helper.instance.get_client_id, csui_helper.instance.client_id)
 
     def test_set_current_page(self):
         csui_helper = CSUIhelper(os.environ.get("SSO_USERNAME"),
@@ -88,3 +85,8 @@ class Lab7UnitTest(TestCase):
             'npm': '09121998'
         })
         self.assertEqual(response.status_code, 200)
+
+    def test_friend_description(self):
+        response = self.client.post('/lab-7/friend-description/0/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'lab_7/deskripsi_teman.html')
