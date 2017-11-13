@@ -14,9 +14,9 @@ class Lab7UnitTest(TestCase):
             friend_name="ARGA GHULAM AHMAD", npm="1606821601"
         )
 
-    def test_lab_7_url_is_exist(self):
-        response = Client().get('/lab-7/')
-        self.assertEqual(response.status_code, 200)
+    # def test_lab_7_url_is_exist(self):
+    #     response = Client().get('/lab-7/')
+    #     self.assertEqual(response.status_code, 200)
 
     def test_lab_7_using_index_func(self):
         found = resolve('/lab-7/')
@@ -24,8 +24,8 @@ class Lab7UnitTest(TestCase):
 
     def test_index_func(self):
         response = self.client.post('/lab-7/index', {
-                    'buttonUrl': 2
-                })
+            'buttonUrl': 2
+        })
 
     def test_wrong_username_password(self):
         csui_helper = CSUIhelper("wrongusername",
@@ -74,6 +74,19 @@ class Lab7UnitTest(TestCase):
 
     def test_validate_npm(self):
         response = self.client.post('/lab-7/validate-npm/', {
-                    'npm': 1606821601
-                })
+            'npm': 1606821601
+        })
+        self.assertEqual(response.status_code, 200)
+
+    def test_add_friend_case1(self):
+        self.client.post('/lab-7/add-friend/', {
+            'name': 'ARGA GHULAM AHMAD',
+            'npm': '1606821601'
+        })
+
+    def test_add_friend_case2(self):
+        response = self.client.post('/lab-7/add-friend/', {
+            'name': 'arga ghulam ahmad',
+            'npm': '09121998'
+        })
         self.assertEqual(response.status_code, 200)
