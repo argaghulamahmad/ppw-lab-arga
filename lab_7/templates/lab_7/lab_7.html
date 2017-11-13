@@ -52,7 +52,7 @@
                                 </a>
                             {% endfor %}
                         {% else %}
-                            <div class="alert alert-danger text-center">
+                            <div class="alert alert-danger text-center" id="msg-no-friend">
                                 <strong>Opps!</strong> Tidak ada teman
                             </div>
                         {% endif %}
@@ -90,6 +90,9 @@
                 url: "{% url "lab-7:add-friend" %}",
                 data: {name: nama, npm: npm},
                 success: function (data) {
+                    {# hapus pesan tidak ada teman #}
+                    $("#msg-no-friend").remove();
+
                     {# bila sudah ada npm tersebut dalam database friend  #}
                     if (data.length === 0) {
                         alert("Mahasiswa tersebut sudah ditambahkan sebagai teman");
