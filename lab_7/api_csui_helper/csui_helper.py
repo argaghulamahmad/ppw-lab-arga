@@ -41,9 +41,9 @@ class CSUIhelper:
 
         def get_auth_param_dict(self):
             dict = {}
-            acces_token = self.get_access_token()
+            access_token = self.get_access_token()
             client_id = self.get_client_id()
-            dict['access_token'] = acces_token
+            dict['access_token'] = access_token
             dict['client_id'] = client_id
 
             return dict
