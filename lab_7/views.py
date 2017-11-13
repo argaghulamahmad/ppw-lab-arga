@@ -75,8 +75,9 @@ def add_friend(request):
             friend.save()
             data = model_to_dict(friend)
             return HttpResponse(data)
-        data = {}
-        return HttpResponse(data)
+        if is_taken:
+            data = {}
+            return HttpResponse(data)
 
 
 @csrf_exempt

@@ -89,15 +89,22 @@
                 method: "POST",
                 url: "{% url "lab-7:add-friend" %}",
                 data: {name: nama, npm: npm},
-                success: function (friend) {
-                    obj_friend = JSON.parse(friend);
-                    html = '<a class="list-group-item clearfix">' +
-                        obj_friend.friend_name + " (" + obj_friend.npm + ") " +
-                        '</a>';
-                    $("#friend-list").append(html)
+                success: function (data) {
+                    {# bila sudah ada npm tersebut dalam database friend  #}
+                    if (data.length === 0) {
+                        alert("Mahasiswa tersebut sudah ditambahkan sebagai teman");
+                    }
+                    {# bila belum ada nom tersebut dalam database friend #}
+                    else {
+                        obj_friend = JSON.parse(data);
+                        html = '<a class="list-group-item clearfix">' +
+                            obj_friend.friend_name + " (" + obj_friend.npm + ") " +
+                            '</a>';
+                        $("#friend-list").append(html);
+                    }
                 },
                 error: function (error) {
-                    alert("Mahasiswa tersebut sudah ditambahkan sebagai teman")
+                    alert("Mahasiswa tersebut sudah ditambahkan sebagai teman");
                 }
             });
         };
