@@ -54,7 +54,8 @@ def friend_list(request):
 def get_friend_list_objects_json(request):
     friends_json = serializers.serialize("json", Friend.objects.all())
     data = {
-        'friends_json': friends_json
+        'friends_json': friends_json,
+        'status': 'success'
     }
     return JsonResponse(data)
 
@@ -62,8 +63,8 @@ def get_friend_list_objects_json(request):
 @csrf_exempt
 def add_friend(request):
     if request.method == 'POST':
-        name = request.POST['name']
-        npm = request.POST['npm']
+        name = request.POST.get('name', None)
+        npm = request.POST.get('npm', None)
         friend_list = Friend.objects.all()
         is_taken = False
         for friend in friend_list:
