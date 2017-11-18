@@ -84,7 +84,8 @@
                 url: "{% url "lab-7:index" %}",
                 data: {buttonUrl: buttonUrl}
             });
-            location.reload();
+            {# location.reload(); #}
+            window.open('', '_self');
         };
 
         var addFriend = function (nama, npm) {
