@@ -1,3 +1,4 @@
+import datetime
 import os
 from django.test import Client
 from django.test import TestCase
@@ -7,6 +8,7 @@ from lab_7.api_csui_helper.csui_helper import CSUIhelper
 from lab_7.models import Friend
 from lab_7.views import index, model_to_dict
 
+now = datetime.datetime.now()
 
 class Lab7UnitTest(TestCase):
     def setUp(self):
@@ -59,7 +61,7 @@ class Lab7UnitTest(TestCase):
         self.assertJSONEqual(
             str(response.content, encoding='utf8'),
             {
-                'friends_json': '[{"model": "lab_7.friend", "pk": 1, "fields": {"friend_name": "ARGA GHULAM AHMAD", "npm": "1606821601", "added_at": "2017-11-13"}}]',
+                'friends_json': '[{"model": "lab_7.friend", "pk": 1, "fields": {"friend_name": "ARGA GHULAM AHMAD", "npm": "1606821601", "added_at": "' + now.strftime("%Y-%m-%d") + '"}}]',
                 'status': 'success'}
         )
 
