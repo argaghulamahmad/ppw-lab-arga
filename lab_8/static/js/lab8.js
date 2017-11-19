@@ -48,6 +48,7 @@ const render = loginFlag => {
             // Render tampilan profil, form input post, tombol post status, dan tombol logout
             $('#login-jumbotron').remove();
 
+            // tampilkan data yang didapatkan pada template
             $('#user-name').html(user.name);
             $('#user-description').html(user.about);
             $('#cover-image').attr('src', user.cover.source);
@@ -66,6 +67,7 @@ const render = loginFlag => {
                 '</div>'
             );
 
+            // memilih ikon gender sesuai data yang didapatkan
             var gender_info = "";
             if (user.gender === 'male') {
                 gender_info = '<li class="list-group-item"><i class="fa fa-mars" aria-hidden="true"></i>' + " Male" + '</li>';
@@ -151,6 +153,7 @@ const render = loginFlag => {
     }
 };
 
+// Fungsi yang menangani proses login
 const facebookLogin = () => {
     // Pastikan method memiliki callback yang akan memanggil fungsi render tampilan sudah login
     // ketika login sukses, serta juga fungsi ini memiliki segala permission yang dibutuhkan
@@ -169,6 +172,7 @@ const facebookLogin = () => {
     }, {scope: 'public_profile,user_posts,publish_actions,email,user_about_me,user_birthday,user_hometown,user_education_history'})
 };
 
+// Fungsi yang menangani proses logout
 const facebookLogout = () => {
     // Method memiliki callback yang akan memanggil fungsi render tampilan belum login
     // ketika logout sukses.
@@ -182,6 +186,10 @@ const facebookLogout = () => {
     });
 };
 
+// Apakah yang dimaksud dengan fungsi callback?
+// fungsi callback adalah fungsi yang dijalankan didalam fungsi lain ketika fungsi tersebut selesai di eksekusi
+
+// Fungsi yang menangani proses mendapatkan data pengguna yang sudah login
 const getUserData = (call) => {
     // Pastikan method ini menerima parameter berupa fungsi callback, lalu merequest data User dari akun
     // yang sedang login dengan semua fields yang dibutuhkan di method render, dan memanggil fungsi callback
@@ -200,6 +208,7 @@ const getUserData = (call) => {
     });
 };
 
+// Fungsi yang menangani proses mendapatkan post pengguna
 const getUserFeed = (call) => {
     // Pastikan method ini menerima parameter berupa fungsi callback, lalu merequest data Home Feed dari akun
     // yang sedang login dengan semua fields yang dibutuhkan di method render, dan memanggil fungsi callback
@@ -218,6 +227,7 @@ const getUserFeed = (call) => {
     );
 };
 
+// Fungsi yang menangani proses memposting status
 const postFeed = (msg) => {
     // Pastikan method ini menerima parameter berupa string message dan melakukan Request POST ke Feed
     // Melalui API Facebook dengan message yang diterima dari parameter.
@@ -270,6 +280,7 @@ const getLoginStatus = (response) => {
     });
 };
 
+// Fungsi yang menangani proses delete post berdasarkan id post tersebut
 const deletePost = (id) => {
     console.log("Delete Post: ");
     console.log(id);
