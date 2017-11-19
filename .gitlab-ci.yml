@@ -20,8 +20,8 @@ UnitTest:
     - python manage.py runserver 8000 &
   when: on_success
   script:
-    - coverage run --include='lab_*/*' manage.py test
-    - coverage report -m
+#    - coverage run --include='lab_*/*' manage.py test
+#    - coverage report -m
 
 Deployment:
   image: ruby:2.4
