@@ -140,7 +140,7 @@ const render = loginFlag => {
         $('#lab8').append(
             '<div id="login-jumbotron" class="jumbotron">' +
             '<h1 class="display-3">Hello, Guest!</h1>' +
-            '<p class="lead">This is Arga Ghulam Ahmad\'s APP PPW-LAB-7.</p>' +
+            '<p class="lead">This is Arga Ghulam Ahmad\'s APP PPW-LAB-8.</p>' +
             '<hr class="my-4">' +
             '<p class="lead">' +
             '<button id="login-button" class="login btn btn-success" onclick="facebookLogin()">Login with your Facebook accout.</button>' +
