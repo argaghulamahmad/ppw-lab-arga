@@ -55,6 +55,7 @@ const render = loginFlag => {
             $('#login-button').remove();
             $('.fb-profile').show();
 
+            $('#lab8-main-area').html('');
             $('#lab8-main-area').append(
                 '<div id="form-update-status-area">' +
                 '<div class="form-group" id="form-update-status">' +
@@ -72,6 +73,13 @@ const render = loginFlag => {
                 gender_info = '<li class="list-group-item"><i class="fa fa-venus" aria-hidden="true"></i>' + " Female" + user.gender + '</li>'
             }
 
+            $('#menu-navbar').html("");
+            $('#menu-navbar').append(
+                '<li>' + '<a href="#" class="card-link">' + '<button class="btn btn-primary render" onclick="render(true)">Re Render</button>' + '</a>' +'</li>' +
+                '<li>' + '<a href="#" class="card-link">' + '<button class="btn btn-danger logout" onclick="facebookLogout(render())">Logout</button>' + '</a>' + '</li>'
+            );
+
+            $('#lab8-side-area').html("");
             $('#lab8-side-area').append(
                 '<div id="bio-card" class="card">' +
                 '<div class="card-block">' +
@@ -82,7 +90,6 @@ const render = loginFlag => {
                 gender_info +
                 '</ul>' +
                 '<div class="card-block">' +
-                '<a href="#" class="card-link">' + '<button class="btn btn-danger logout" onclick="facebookLogout(render())">Logout</button>' + '</a>' +
                 '</div>' +
                 '</div>'
             );
@@ -101,7 +108,7 @@ const render = loginFlag => {
                             '<div class="panel-heading">Message & Story</div>' +
                             '<div class="panel-body">' + value.message + '</div>' +
                             '<div class="panel-body info">' + value.story + '</div>' +
-                            '<div class="panel-footer">' + '<button class="btn btn-danger"">Delete Post</button>' + '</div>' +
+                            '<div class="panel-footer">' + '<button onclick="deletePost(\'' + value.id + '\')" class="btn btn-danger"">Delete Post</button>' + '</div>' +
                             '</div>'
                         );
                     } else if (value.message) {
@@ -109,7 +116,7 @@ const render = loginFlag => {
                             '<div value="" class="panel panel-primary">' +
                             '<div class="panel-heading">Message</div>' +
                             '<div class="panel-body">' + value.message + '</div>' +
-                            '<div class="panel-footer">' + '<button class="btn btn-danger">Delete Post</button>' + '</div>' +
+                            '<div class="panel-footer">' + '<button onclick="deletePost(\'' + value.id + '\')" class="btn btn-danger">Delete Post</button>' + '</div>' +
                             '</div>'
                         );
                     } else if (value.story) {
@@ -117,7 +124,7 @@ const render = loginFlag => {
                             '<div value="" class="panel panel-primary">' +
                             '<div class="panel-heading">Message & Story</div>' +
                             '<div class="panel-body">' + value.story + '</div>' +
-                            '<div class="panel-footer">' + '<button class="btn btn-danger")">Delete Post</button>' + '</div>' +
+                            '<div class="panel-footer">' + '<button onclick="deletePost(\'' + value.id + '\')" class="btn btn-danger")">Delete Post</button>' + '</div>' +
                             '</div>'
                         );
                     }
@@ -129,6 +136,7 @@ const render = loginFlag => {
         console.log("LoginFlag: " + loginFlag);
         $('#lab8-main-area').html("");
         $('#lab8-side-area').html("");
+        $('#menu-navbar').html("");
         $('#lab8').append(
             '<div id="login-jumbotron" class="jumbotron">' +
             '<h1 class="display-3">Hello, Guest!</h1>' +
@@ -219,6 +227,7 @@ const postFeed = (msg) => {
             alert('Error occured');
         } else {
             alert('Posted! - Post ID: ' + response.id);
+            render(true);
         }
     });
 };
@@ -226,8 +235,9 @@ const postFeed = (msg) => {
 // method helper post status
 const postStatus = () => {
     const message = $('#postInput').val();
-    console.log(message);
+    console.log("Post Status: " + message);
     postFeed(message);
+    render(true);
 };
 
 // fungsi untuk mengecek apakah user sudah login
@@ -260,18 +270,19 @@ const getLoginStatus = (response) => {
     });
 };
 
-/*
-const deleteFeed = (post_id) => {
-    var str_post_id = "/" + post_id;
-    console.log(str_post_id);
-    FB.api(
-        str_post_id,
-        "DELETE",
-        function (response) {
-            if (response && !response.error) {
-                alert("Deleted! - " + post_id);
-                console.log(post_id + ' Deleted!')
-            }
+const deletePost = (id) => {
+    console.log("Delete Post: ");
+    console.log(id);
+    FB.api('/' + id, 'DELETE', function (response) {
+        console.log(response);
+        if (response.success) {
+            render(true);
+            console.log(id + "Post Deleted!");
+        } else {
+            alert("Tidak dapat menghapus post yang tidak di post melalui aplikasi ini!");
+            console.log("Delete Failed!")
         }
-    );
-};*/
+
+    });
+};
+
