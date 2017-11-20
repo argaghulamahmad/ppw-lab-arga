@@ -390,23 +390,23 @@ Pastikan anda menggunakan browser Google Chrome / Mozilla Firefox versi terbaru 
 
 ### Mandatory
 1. Membuat halaman untuk Login menggunakan OAuth
-    1. [ ] Mendaftarkan aplikasi ke facebook developer page
-    2. [ ] Melakukan OAuth Login menggunakan Facebook
-    3. [ ] Menampilkan informasi dari user yang login menggunakan API Facebook.
-    4. [ ] Melakukan post status facebook
-    5. [ ] Menampilkan post status pada halaman lab_8.html
-    6. [ ] Melakukan Logout
-    7. [ ] Implementasi css yang indah dan responsive
+    1. [x] Mendaftarkan aplikasi ke facebook developer page
+    2. [x] Melakukan OAuth Login menggunakan Facebook
+    3. [x] Menampilkan informasi dari user yang login menggunakan API Facebook.
+    4. [x] Melakukan post status facebook
+    5. [x] Menampilkan post status pada halaman lab_8.html
+    6. [x] Melakukan Logout
+    7. [x] Implementasi css yang indah dan responsive
     
 2. Jawablah pertanyaan yang ada di dokumen ini dengan menuliskannya pada buku catatan atau pada source code kalian yang dapat ditunjukkan saat demo
 
 3. Pastikan kalian memiliki _Code Coverage_ yang baik
-    1. [ ] Jika kalian belum melakukan konfigurasi untuk menampilkan _Code Coverage_ di Gitlab maka lihat langkah `Show Code Coverage in Gitlab` di [README.md](https://gitlab.com/PPW-2017/ppw-lab/blob/master/README.md)
-    2. [ ] Pastikan _Code Coverage_ kalian 100%
+    1. [x] Jika kalian belum melakukan konfigurasi untuk menampilkan _Code Coverage_ di Gitlab maka lihat langkah `Show Code Coverage in Gitlab` di [README.md](https://gitlab.com/PPW-2017/ppw-lab/blob/master/README.md)
+    2. [x] Pastikan _Code Coverage_ kalian 100%
 
 
 ### Additional
 
 1. Melakukan delete status pada halaman facebook
-    1. [ ] Implementasi tombol delete pada daftar post status
-    2. [ ] Melakukan delete post status dengan menggunakan API Facebook yang ada.
+    1. [x] Implementasi tombol delete pada daftar post status
+    2. [x] Melakukan delete post status dengan menggunakan API Facebook yang ada.
