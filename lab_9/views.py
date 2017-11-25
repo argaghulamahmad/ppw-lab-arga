@@ -26,7 +26,7 @@ response = {}
 def index(request):
     print("#==> masuk index")
     response['author'] = 'Arga Ghulam Ahmad'
-    # Mengecek cookie, untuk mengetahui apakah sudah login?
+    # Mengecek cookie & session, untuk mengetahui apakah sudah login?
     if 'user_login' in request.session:
         return HttpResponseRedirect(reverse('lab-9:profile'))
     else:
@@ -37,15 +37,15 @@ def index(request):
 
         return render(request, html, response)
 
-
 """
     Fungsi untuk mengeset data untuk session
 """
 
 
 def set_data_for_session(res, request):
-    response['author'] = request.session['user_login']
+    response['user_name'] = request.session['user_login']
     response['access_token'] = request.session['access_token']
+    response['user_npm'] = request.session['kode_identitas']
     response['kode_identitas'] = request.session['kode_identitas']
     response['role'] = request.session['role']
     response['drones'] = get_drones().json()
