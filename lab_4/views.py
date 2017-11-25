@@ -8,10 +8,18 @@ response = {'author': "Arga Ghulam Ahmad"}
 about_me = ["# Computer Science Student", "# Full Time Programmer", "# Part Time Gamer", "# Muslim", "# Bike Rider", "# OmegaCSUI"]
 def index(request):
     response['content'] = landing_page_content
-    html = 'lab_4/lab_4.html'
     response['about_me'] = about_me
     response['message_form'] = Message_Form
-    return render(request, html, response)
+    if 'user_login' in request.session:
+        html = 'lab_4/lab_4.html'
+        response['user_name'] = request.session['user_login']
+        response['user_npm'] = request.session['kode_identitas']
+        response['author'] = "Arga Ghulam Ahmad"
+        response['button_logout_session'] = True
+        return render(request, html, response)
+    else:
+        html = 'lab_9/session/login.html'
+        return render(request, html, response)
 
 def message_post(request):
     form = Message_Form(request.POST or None)
@@ -28,7 +36,15 @@ def message_post(request):
         return HttpResponseRedirect('/lab-4/')
 
 def message_table(request):
-    message = Message.objects.all()
-    response['message'] = message
-    html = 'lab_4/table.html'
-    return render(request, html, response)
+    if 'user_login' in request.session:
+        response['user_name'] = request.session['user_login']
+        response['user_npm'] = request.session['kode_identitas']
+        response['author'] = "Arga Ghulam Ahmad"
+        response['button_logout_session'] = True
+        message = Message.objects.all()
+        response['message'] = message
+        html = 'lab_4/table.html'
+        return render(request, html, response)
+    else:
+        html = 'lab_9/session/login.html'
+        return render(request, html, response)

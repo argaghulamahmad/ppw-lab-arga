@@ -5,10 +5,19 @@ import pytz
 import json
 
 diary_dict = {}
-
+response ={}
 def index(request):
     diary_dict = Diary.objects.all().values()
-    return render(request, 'to_do_list.html', {'diary_dict' : convert_queryset_into_json(diary_dict)})
+    if 'user_login' in request.session:
+        response['user_name'] = request.session['user_login']
+        response['user_npm'] = request.session['kode_identitas']
+        response['author'] = "Arga Ghulam Ahmad"
+        response['diary_dict'] = convert_queryset_into_json(diary_dict)
+        response['button_logout_session'] = True
+        return render(request, 'to_do_list.html', response)
+    else:
+        html = 'lab_9/session/login.html'
+        return render(request, html, response)
 
 def add_activity(request):
     try:

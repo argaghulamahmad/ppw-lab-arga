@@ -5,12 +5,19 @@ from .models import Todo
 
 response = {}
 def index(request):
-    response['author'] = "Arga Ghulam Ahmad"
     todo = Todo.objects.all()
     response['todo'] = todo
-    html = 'lab_5/lab_5.html'
     response['todo_form'] = Todo_Form
-    return render(request, html, response)
+    if 'user_login' in request.session:
+        html = 'lab_5/lab_5.html'
+        response['user_name'] = request.session['user_login']
+        response['user_npm'] = request.session['kode_identitas']
+        response['author'] = "Arga Ghulam Ahmad"
+        response['button_logout_session'] = True
+        return render(request, html, response)
+    else:
+        html = 'lab_9/session/login.html'
+        return render(request, html, response)
 
 def add_todo(request):
     form = Todo_Form(request.POST or None)

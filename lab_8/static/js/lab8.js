@@ -55,7 +55,7 @@ const render = loginFlag => {
             $('#profile-image').attr('src', user.picture.data.url);
             $('#login-button').remove();
             $('.fb-profile').show();
-
+            $('#lab8').html("");
             $('#lab8-main-area').html('');
             $('#lab8-main-area').append(
                 '<div id="form-update-status-area">' +
@@ -138,6 +138,7 @@ const render = loginFlag => {
         console.log("LoginFlag: " + loginFlag);
         $('#lab8-main-area').html("");
         $('#lab8-side-area').html("");
+        $('#lab8').html("");
         $('#menu-navbar').html("");
         $('#lab8').append(
             '<div id="login-jumbotron" class="jumbotron">' +

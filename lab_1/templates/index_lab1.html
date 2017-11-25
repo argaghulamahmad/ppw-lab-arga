@@ -3,9 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ name }}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="LAB 9">
+    <meta name="author" content="{{ author }}">
+
+    <!-- bootstrap csss -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+<header>
+    {% include "lab_9/partials/header.html" %}
+</header>
+<div class="container">
     <h1>Hello my name is {{ name }}</h1>
     <article>I am {{ age }} years old</article>
+</div>
+<footer>
+    <hr>
+    {% block footer %}
+        {% include "lab_9/partials/footer.html" %}
+    {% endblock %}
+</footer>
 </body>
 </html>

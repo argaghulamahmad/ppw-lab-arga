@@ -5,4 +5,12 @@ landing_page_content = 'A computer science student at Fasilkom, Universitas Indo
 
 def index(request):
     response = {'name': mhs_name, 'content': landing_page_content}
-    return render(request, 'index_lab2.html', response)
+    if 'user_login' in request.session:
+        response['user_name'] = request.session['user_login']
+        response['user_npm'] = request.session['kode_identitas']
+        response['author'] = "Arga Ghulam Ahmad"
+        response['button_logout_session'] = True
+        return render(request, 'index_lab2.html', response)
+    else:
+        html = 'lab_9/session/login.html'
+        return render(request, html, response)

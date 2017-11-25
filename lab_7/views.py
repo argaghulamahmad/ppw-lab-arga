@@ -1,12 +1,13 @@
-from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.core import serializers
-
-from .models import Friend
-from .api_csui_helper.csui_helper import CSUIhelper
-import os
 import json
+import os
+
+from django.core import serializers
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
+
+from .api_csui_helper.csui_helper import CSUIhelper
+from .models import Friend
 
 response = {}
 csui_helper = CSUIhelper(os.environ.get("SSO_USERNAME"),

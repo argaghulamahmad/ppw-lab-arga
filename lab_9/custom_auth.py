@@ -27,11 +27,12 @@ def auth_login(request):
             messages.success(request, "Anda berhasil login")
         else:
             messages.error(request, "Username atau password salah")
-    return HttpResponseRedirect(reverse('lab-9:index'))
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 def auth_logout(request):
     print ("#==> auth logout")
     request.session.flush() # menghapus semua session
 
     messages.info(request, "Anda berhasil logout. Semua session Anda sudah dihapus")
-    return HttpResponseRedirect(reverse('lab-9:index'))
+    # return HttpResponseRedirect(reverse('lab-9:index'))
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
