@@ -31,6 +31,10 @@ def index(request):
         return HttpResponseRedirect(reverse('lab-9:profile'))
     else:
         html = 'lab_9/session/login.html'
+
+        response['button_logout_session'] = False
+        response['button_logout_cookie'] = False
+
         return render(request, html, response)
 
 
@@ -86,6 +90,10 @@ def profile(request):
 
     set_data_for_session(response, request)
 
+    response['button_logout_session'] = True
+    response['button_logout_cookie'] = False
+    response['author'] = "Arga Ghulam Ahmad"
+
     html = 'lab_9/session/profile.html'
     return render(request, html, response)
 
@@ -136,7 +144,7 @@ def add_session_opticals(request, id):
     ssn_key = request.session.keys()
     if not 'opticals' in ssn_key:
         print("# init opticals ")
-        request.session['drones'] = [id]
+        request.session['opticals'] = [id]
     else:
         opticals = request.session['opticals']
         print("# existing opticals => ", opticals)
@@ -166,7 +174,7 @@ def clear_session_opticals(request):
     print("before 1 = ", request.session['opticals'])
     del request.session['opticals']
 
-    messages.error(request, "Berhasil reset favorite drones")
+    messages.error(request, "Berhasil reset favorite opticals")
     return HttpResponseRedirect(reverse('lab-9:profile'))
 
 
@@ -225,6 +233,11 @@ def cookie_login(request):
         return HttpResponseRedirect(reverse('lab-9:cookie_profile'))
     else:
         html = 'lab_9/cookie/login.html'
+
+        response['button_logout_session'] = False
+        response['button_logout_cookie'] = False
+        response['author'] = "Arga Ghulam Ahmad"
+
         return render(request, html, response)
 
 
@@ -258,7 +271,7 @@ def cookie_auth_login(request):
 
 
 """
-    
+    Halaman profile untuk cookie
 """
 
 
@@ -270,6 +283,9 @@ def cookie_profile(request):
         return HttpResponseRedirect(reverse('lab-9:cookie_login'))
     else:
         response['author'] = "Arga Ghulam Ahmad"
+        response['button_logout_cookie'] = True
+        response['button_logout_session'] = False
+
         print("cookies => ", request.COOKIES)
         in_uname = request.COOKIES['user_login']
         in_pwd = request.COOKIES['user_password']
@@ -325,39 +341,38 @@ def is_login(request):
 
 
 ### General Function
-def add_session_item(request, key, id):
-    print("#ADD session item")
-    ssn_key = request.session.keys()
-    if not key in ssn_key:
-        request.session[key] = [id]
-    else:
-        items = request.session[key]
-        if id not in items:
-            items.append(id)
-            request.session[key] = items
-
-    msg = "Berhasil tambah " + key + " favorite"
-    messages.success(request, msg)
-    return HttpResponseRedirect(reverse('lab-9:profile'))
-
-
-def del_session_item(request, key, id):
-    print("# DEL session item")
-    items = request.session[key]
-    print("before = ", items)
-    items.remove(id)
-    request.session[key] = items
-    print("after = ", items)
-
-    msg = "Berhasil hapus item " + key + " dari favorite"
-    messages.error(request, msg)
-    return HttpResponseRedirect(reverse('lab-9:profile'))
-
-
-def clear_session_item(request, key):
-    del request.session[key]
-    msg = "Berhasil hapus session : favorite " + key
-    messages.error(request, msg)
-    return HttpResponseRedirect(reverse('lab-9:index'))
-
+# def add_session_item(request, key, id):
+#     print("#ADD session item")
+#     ssn_key = request.session.keys()
+#     if not key in ssn_key:
+#         request.session[key] = [id]
+#     else:
+#         items = request.session[key]
+#         if id not in items:
+#             items.append(id)
+#             request.session[key] = items
+#
+#     msg = "Berhasil tambah " + key + " favorite"
+#     messages.success(request, msg)
+#     return HttpResponseRedirect(reverse('lab-9:profile'))
+#
+#
+# def del_session_item(request, key, id):
+#     print("# DEL session item")
+#     items = request.session[key]
+#     print("before = ", items)
+#     items.remove(id)
+#     request.session[key] = items
+#     print("after = ", items)
+#
+#     msg = "Berhasil hapus item " + key + " dari favorite"
+#     messages.error(request, msg)
+#     return HttpResponseRedirect(reverse('lab-9:profile'))
+#
+#
+# def clear_session_item(request, key):
+#     del request.session[key]
+#     msg = "Berhasil hapus session : favorite " + key
+#     messages.error(request, msg)
+#     return HttpResponseRedirect(reverse('lab-9:index'))
 # ======================================================================== #
