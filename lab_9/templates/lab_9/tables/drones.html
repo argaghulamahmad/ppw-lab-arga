@@ -6,34 +6,36 @@
         </a>
     </div>
     <div class="panel-body">
-        <table class="table">
-            <thead>
-            <th> No</th>
-            <th> Nama</th>
-            <th> Harga</th>
-            <th> Jumlah</th>
-            <th> Aksi</th>
-
-            </thead>
-            <tbody>
-            {% for drone in drones %}
-                <tr>
-                    <td> {{ forloop.counter }}</td>
-                    <td> {{ drone.name }}</td>
-                    <td> {{ drone.price }}</td>
-                    <td> {{ drone.quantity }}</td>
-                    <td>
-                        {% if not drone.id in fav_drones %}
-                            <a href="{% url 'lab-9:add_session_drones' drone.id %}" class="btn btn-primary">
-                                Favoritkan </a>
-                        {% else %}
-                            <a href="{% url 'lab-9:del_session_drones' drone.id %}" class="btn btn-primary"> Hapus dari
-                                favorit </a>
-                        {% endif %}
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <th> No</th>
+                <th> Nama</th>
+                <th> Harga</th>
+                <th> Jumlah</th>
+                <th> Aksi</th>
+                </thead>
+                <tbody>
+                {% for drone in drones %}
+                    <tr>
+                        <td> {{ forloop.counter }}</td>
+                        <td> {{ drone.name }}</td>
+                        <td> {{ drone.price }}</td>
+                        <td> {{ drone.quantity }}</td>
+                        <td>
+                            {% if not drone.id in fav_drones %}
+                                <a href="{% url 'lab-9:add_session_drones' drone.id %}" class="btn btn-primary">
+                                    Favoritkan </a>
+                            {% else %}
+                                <a href="{% url 'lab-9:del_session_drones' drone.id %}" class="btn btn-primary"> Hapus
+                                    dari
+                                    favorit </a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

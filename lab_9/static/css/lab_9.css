@@ -1,99 +1,10 @@
-/*profile area style*/
-body {
-    font-family: 'Open Sans', sans-serif;
-}
-
-.fb-profile img.fb-cover-image {
-    z-index: 0;
-    width: 100%;
-    margin-bottom: 10px;
-}
-
-.fb-profile-image {
-    margin: -90px 10px 0px 50px;
-    z-index: 9;
-    width: 20%;
-}
-
-@media (max-width: 720px) {
-
-    .fb-profile-text > h1 {
-        font-weight: 700;
-        font-size: 16px;
-    }
-
-    .fb-profile-image {
-        margin: -45px 10px 0px 25px;
-        z-index: 9;
-        width: 20%;
-    }
-
-    p {
-        text-align: center;
-    }
-
-    #bio-card {
-        width: 50%;
-        margin: 0 auto;
-    }
-}
-
-/*label size*/
-.label-xsmall {
-    vertical-align: super;
-    font-size: x-small;
-}
-
-.label-small {
-    vertical-align: super;
-    font-size: small;
-}
-
-.label-medium {
-    vertical-align: super;
-    font-size: medium;
-}
-
-.label-large {
-    vertical-align: super;
-    font-size: large;
-}
-
-.label-bs {
-    vertical-align: super;
-}
-
-/**/
-#form-update-status {
-    padding-bottom: 10px;
-}
-
-#form-update-status-area {
-    padding-bottom: 50px;
-}
-
-#bio-card {
-    width: 28rem;
-    padding-bottom: 30px;
-}
-
-#bio-card .card-title {
+.rata-tengah {
     text-align: center;
+    margin: 20px;
 }
 
-.info {
-    font-size: 10px;
-}
-
-/* Navbar Additional CSS */
-.navbar-brand
-{
-    position: absolute;
-    width: 100%;
-    left: 0;
-    text-align: center;
-    margin:0 auto;
-}
-.navbar-toggle {
-    z-index:3;
+.judul {
+    text-transform: uppercase;
+    margin-bottom: 50px;
+    margin-top: 50px;
 }
