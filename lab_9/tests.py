@@ -18,13 +18,6 @@ class Lab9UnitTest(TestCase):
         found = resolve('/lab-9/')
         self.assertEqual(found.func, index)
 
-    # if user logged in
-    def test_lab9_index_case1(self):
-        response = Client().post('/lab-9/custom_auth/login/',
-                                 {'username': os.environ.get("SSO_USERNAME"),
-                                  'password': os.environ.get("SSO_PASSWORD")})
-        self.assertRedirects(response, '/lab-9/', status_code=302, target_status_code=302)
-
     # test for enterkomputer api
     def test_get_enterkomputer_api(self):
         self.assertJSONNotEqual(str(get_drones().content, encoding='utf8'), {})
@@ -159,3 +152,6 @@ class Lab9UnitTest(TestCase):
     def test_clear_cookie(self):
         response = Client().post('/lab-9/cookie/clear/')
         self.assertRedirects(response, '/lab-9/cookie/login', target_status_code=301)
+
+    def test_my_cookie_auth(self):
+        self.assertEqual(my_cookie_auth('user', 'pass'), True)

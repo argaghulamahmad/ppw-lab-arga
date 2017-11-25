@@ -1,11 +1,12 @@
-from django.test import TestCase
 from django.test import Client
+from django.test import TestCase
 from django.urls import resolve
-from django.http import HttpRequest
+
 from lab_1.views import mhs_name
-from .models import Message
 from .forms import Message_Form
-from .views import index, message_table, about_me, landing_page_content, message_post
+from .models import Message
+from .views import index, message_table, about_me, landing_page_content
+
 
 class Lab4UnitTest(TestCase):
     def test_lab_4_url_is_exist(self):
@@ -13,23 +14,28 @@ class Lab4UnitTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_about_me_more_than_6(self):
-       self.assertTrue(len(about_me) >= 6)
+        self.assertTrue(len(about_me) >= 6)
 
     def test_lab4_using_index_func(self):
         found = resolve('/lab-4/')
         self.assertEqual(found.func, index)
 
     def test_landing_page_is_completed(self):
-        request = HttpRequest()
-        response = index(request)
+        response = Client().get('/lab-4/')
+        self.assertTemplateUsed(response, 'lab_9/session/login.html')
+
+        session = self.client.session
+        session['user_login'] = 'user'
+        session['kode_identitas'] = 'npm'
+        session.save()
+
+        response = self.client.get('/lab-4/')
         html_response = response.content.decode('utf8')
-
-        #Checking whether have Bio content
+        # checking whether have Bio content
         self.assertIn(landing_page_content, html_response)
-
-        #Checking whether all About Me Item is rendered
+        # checking whether all About Me Item is rendered
         for item in about_me:
-            self.assertIn(item,html_response)
+            self.assertIn(item, html_response)
 
     def test_model_can_create_new_message(self):
         # Creating a new activity
@@ -76,6 +82,8 @@ class Lab4UnitTest(TestCase):
         self.assertEqual(found.func, message_table)
 
     def test_lab_4_showing_all_messages(self):
+        response = Client().get('/lab-4/result_table')
+        self.assertTemplateUsed(response, 'lab_9/session/login.html')
 
         name_budi = 'Budi'
         email_budi = 'budi@ui.ac.id'
@@ -89,12 +97,15 @@ class Lab4UnitTest(TestCase):
         post_data_anonymous = Client().post('/lab-4/add_message', data_anonymous)
         self.assertEqual(post_data_anonymous.status_code, 200)
 
-        response = Client().get('/lab-4/result_table')
-        html_response = response.content.decode('utf8')
+        session = self.client.session
+        session['user_login'] = 'user'
+        session['kode_identitas'] = 'npm'
+        session.save()
 
+        response = self.client.get('/lab-4/result_table')
+        html_response = response.content.decode('utf8')
         for key, data in data_budi.items():
             self.assertIn(data, html_response)
-
         self.assertIn('Anonymous', html_response)
         self.assertIn(message_anonymous, html_response)
 
@@ -107,13 +118,18 @@ class Lab4UnitTest(TestCase):
     def test_root_url_now_is_using_index_page_from_lab_4(self):
         response = Client().get('/')
         self.assertEqual(response.status_code, 301)
-        self.assertRedirects(response,'/lab-4/',301,200)
+        self.assertRedirects(response, '/lab-4/', 301, 200)
 
     def test_is_copyright_exist(self):
-        response = Client().get('/lab-4/')
+        session = self.client.session
+        session['user_login'] = 'user'
+        session['kode_identitas'] = 'npm'
+        session.save()
+
+        response = self.client.get('/lab-4/')
         html_response = response.content.decode('utf8')
+
         copyright_str = '&copy; ' + mhs_name
-        response = Client().get('/lab-4/')
         self.assertIn(copyright_str, html_response)
 
     def test_is_navbar_exist(self):

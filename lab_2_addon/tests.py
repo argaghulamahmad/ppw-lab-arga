@@ -1,4 +1,3 @@
-from django.http import HttpRequest
 from django.test import TestCase, Client
 from django.urls import resolve
 
@@ -6,7 +5,6 @@ from lab_2_addon.views import bio_dict, index
 
 
 class Lab2AddonUnitTest(TestCase):
-
     def test_lab_2_addon_url_is_exist(self):
         response = Client().get('/lab-2-addon/')
         self.assertEqual(response.status_code, 200)
@@ -32,8 +30,14 @@ class Lab2AddonUnitTest(TestCase):
             self.assertIsNot(type(bio['value']), type(8))
 
     def test_lab2_addon_bio_shown_in_page(self):
-        request = HttpRequest()
-        response = index(request)
+        response = Client().get('/lab-2-addon/')
+        self.assertTemplateUsed(response, 'lab_9/session/login.html')
+
+        session = self.client.session
+        session['user_login'] = 'test'
+        session['kode_identitas'] = '123'
+        session.save()
+        response = self.client.get('/lab-2-addon/')
         html_response = response.content.decode('utf8')
 
         # Checking all family member is shown in page

@@ -1,12 +1,13 @@
 import datetime
 import os
+
 from django.test import Client
 from django.test import TestCase
-from django.urls import resolve, reverse
+from django.urls import resolve
 
 from lab_7.api_csui_helper.csui_helper import CSUIhelper
 from lab_7.models import Friend
-from lab_7.views import index, model_to_dict
+from lab_7.views import index
 
 now = datetime.datetime.now()
 
