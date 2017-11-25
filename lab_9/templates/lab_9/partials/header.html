@@ -14,6 +14,7 @@
         </ul>
         <ul id="menu-navbar" class="nav navbar-nav navbar-right">
             {% if button_logout_session %}
+                <p class="navbar-text">Anda Masuk sebagai : {{ user_name }} {{ user_npm }}</p>
                 <li>
                     <a href="{% url 'lab-9:auth_logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
                 </li>
