@@ -16,5 +16,3 @@ def get_soundcards():
 def get_opticals():
     opticals = requests.get(OPTICAL_API)
     return opticals
-
-# lengkapi pemanggilan utk SOUNDCARD_API dan OPTICAL_API untuk mengerjakan CHALLENGE
