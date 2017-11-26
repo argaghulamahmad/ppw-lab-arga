@@ -1,13 +1,16 @@
 import os
+import environ
 
 from django.test import Client
 from django.test import TestCase
 from django.urls import resolve
 
-from lab_7.api_csui_helper.csui_helper import env
 from lab_9.csui_helper import get_access_token, get_client_id, verify_user, get_data_user
 from lab_9.views import *
 
+root = environ.Path(__file__) - 3 # three folder back (/a/b/c/ - 3 = /)
+env = environ.Env(DEBUG=(bool, False),)
+environ.Env.read_env('.env')
 
 class Lab9UnitTest(TestCase):
     def test_lab_9_url_is_exist(self):
