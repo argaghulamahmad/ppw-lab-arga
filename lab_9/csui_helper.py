@@ -4,7 +4,9 @@ API_MAHASISWA = "https://api-dev.cs.ui.ac.id/siakngcs/mahasiswa/"
 API_VERIFY_USER = "https://akun.cs.ui.ac.id/oauth/token/verify/"
 API_MAHASISWA_LIST_URL = "https://api.cs.ui.ac.id/siakngcs/mahasiswa-list/"
 
-
+"""
+Fungsi untuk mendapatkan access token mahasiswa menggunakan username dan password miliknya
+"""
 def get_access_token(username, password):
     try:
         url = "https://akun.cs.ui.ac.id/oauth/token/"
@@ -22,19 +24,25 @@ def get_access_token(username, password):
         return None
         # raise Exception("username atau password sso salah, input : [{}, {}]".format(username, password,))
 
-
+"""
+Fungsi yang mereturn client id
+"""
 def get_client_id():
     client_id = 'X3zNkFmepkdA47ASNMDZRX3Z9gqSU1Lwywu5WepG'
     return client_id
 
-
+"""
+Memeriksa access token mahasiswa apakah valid ?
+"""
 def verify_user(access_token):
     print("#get identity number")
     parameters = {"access_token": access_token, "client_id": get_client_id()}
     response = requests.get(API_VERIFY_USER, params=parameters)
     print("response => ", response.json())
     return response.json()
-
+"""
+Mengembalikan data json yang berisi data user
+"""
 
 def get_data_user(access_token, id):
     print("#get data user => ", id)
@@ -44,7 +52,9 @@ def get_data_user(access_token, id):
     print("response => ", response.json())
     return response.json()
 
-
+"""
+Fungsi yang mengembalikan list mahasiswa dalam format json
+"""
 def get_mahasiswa_list(access_token):
     response = requests.get(API_MAHASISWA_LIST_URL, params={"access_token": access_token, "client_id": get_client_id()})
     mahasiswa_list = response.json()["results"]

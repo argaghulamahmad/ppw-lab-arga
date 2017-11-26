@@ -760,39 +760,39 @@ Untuk membantu kalian dalam mengerjakan challenge, telah disiapkan beberapa bari
 ### Mandatory 
 
 1. Session: Login & Logout
-    1. [ ] Implementasi fungsi Login 
-    2. [ ] Implementasi fungsi Logout 
+    1. [x] Implementasi fungsi Login
+    2. [x] Implementasi fungsi Logout
     
 2. Session: Kelola Favorit
-    1. [ ] Implementasi fungsi "Favoritkan" untuk Drones
-    2. [ ] Implementasi fungsi "Hapus dari favorit" untuk Drones
-    2. [ ] Implementasi fungsi "Reset favorit" untuk Drones
+    1. [x] Implementasi fungsi "Favoritkan" untuk Drones
+    2. [x] Implementasi fungsi "Hapus dari favorit" untuk Drones
+    2. [x] Implementasi fungsi "Reset favorit" untuk Drones
 
 3. Cookies: Login & Logout
-    1. [ ] Implementasi fungsi Login
-    2. [ ] Implementasi fungsi Logout
+    1. [x] Implementasi fungsi Login
+    2. [x] Implementasi fungsi Logout
 
 4. Implementasi Header dan Footer
-    1. [ ] Buatlah header yang berisi tombol Logout *hanya jika* sudah login 
+    1. [x] Buatlah header yang berisi tombol Logout *hanya jika* sudah login
     (baik pada session dan cookies). Buatlah sebagus dan semenarik mungkin.
     
 3. Pastikan kalian memiliki _Code Coverage_ yang baik
-    1. [ ] Jika kalian belum melakukan konfigurasi untuk menampilkan _Code Coverage_ di Gitlab maka lihat langkah `Show Code Coverage in Gitlab` di [README.md](https://gitlab.com/PPW-2017/ppw-lab/blob/master/README.md)
-    2. [ ] Pastikan _Code Coverage_ kalian 100%
+    1. [x] Jika kalian belum melakukan konfigurasi untuk menampilkan _Code Coverage_ di Gitlab maka lihat langkah `Show Code Coverage in Gitlab` di [README.md](https://gitlab.com/PPW-2017/ppw-lab/blob/master/README.md)
+    2. [x] Pastikan _Code Coverage_ kalian 100%
 
 ### Challenge
 1. Implementasi API Optical dan SoundCard
-    1. [ ] Menambahkan link ke tab Optical dan Soundcard pada halaman Session Profile
-    1. [ ] Membuat tabel berisi data optical/soundcard 
+    1. [x] Menambahkan link ke tab Optical dan Soundcard pada halaman Session Profile
+    1. [x] Membuat tabel berisi data optical/soundcard
     
 2. Implementasi fungsi umum yang sudah disediakan mengelola session:
-    1. [ ] Menggunakan fungsi umum untuk menambahkan (Favoritkan) optical/soundcard ke session
-    2. [ ] Menggunakan fungsi umum untuk menghapus (Hapus dari Favorit) optical/soundcard dari session
-    3. [ ] Menggunakan fungsi umum untuk menghapus/reset kategori (drones/optical/soundcard) dari session.
+    1. [x] Menggunakan fungsi umum untuk menambahkan (Favoritkan) optical/soundcard ke session
+    2. [x] Menggunakan fungsi umum untuk menghapus (Hapus dari Favorit) optical/soundcard dari session
+    3. [x] Menggunakan fungsi umum untuk menghapus/reset kategori (drones/optical/soundcard) dari session.
 
 3. Implementasi _session_ untuk semua halaman yang telah dibuat pada Lab Sebelumnya
-    1. [ ] Jika halaman lab diakses tanpa login terlebih dahulu, maka mereka akan ditampilkan halaman login
-    2. [ ] Ketika halaman Lab ke-**N** diakses tanpa login, maka setelah login, pengguna akan diberikan tampilan Lab ke-**N**
-    3. [ ] Ubahlah implementasi `csui_helper.py` pada Lab 9 sehingga bisa digunakan oleh Lab 7 (Kalian boleh menghapus berkas `csui_helper.py`
+    1. [x] Jika halaman lab diakses tanpa login terlebih dahulu, maka mereka akan ditampilkan halaman login
+    2. [x] Ketika halaman Lab ke-**N** diakses tanpa login, maka setelah login, pengguna akan diberikan tampilan Lab ke-**N**
+    3. [x] Ubahlah implementasi `csui_helper.py` pada Lab 9 sehingga bisa digunakan oleh Lab 7 (Kalian boleh menghapus berkas `csui_helper.py`
     yang ada di Lab 7)
       
