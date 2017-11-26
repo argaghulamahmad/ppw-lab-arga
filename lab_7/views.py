@@ -16,24 +16,39 @@ csui_helper = CSUIhelper(os.environ.get("SSO_USERNAME"),
 
 @csrf_exempt
 def index(request):
-    # Page halaman menampilkan list mahasiswa yang ada
-    if request.method == 'POST':
-        csui_helper.instance.set_current_page(int(request.POST.get('buttonUrl')))
+    response = {}
+    if 'user_login' in request.session:
+        response['user_name'] = request.session['user_login']
+        response['user_npm'] = request.session['kode_identitas']
+        response['author'] = "Arga Ghulam Ahmad"
+        response['button_logout_session'] = True
+
+        mahasiswa_list = csui_helper.instance.get_mahasiswa_list()
+
+        friend_list = Friend.objects.all()
+        response = {"mahasiswa_list": mahasiswa_list, "friend_list": friend_list, "author": "Arga Ghulam Ahmad",
+                    "next_url": 2,
+                    "previous_url": 0}
+        html = 'lab_7/lab_7.html'
+        return render(request, html, response)
+    else:
+        html = 'lab_9/session/login.html'
+        return render(request, html, response)
+
+def index_parameterized(request):
+    csui_helper.instance.set_current_page(int(request.POST.get('buttonUrl')))
 
     mahasiswa_list = csui_helper.instance.get_mahasiswa_list()
     siakng_mahasiswalist_data = csui_helper.instance.get_siakng_mahasiswalist_data()
 
-    previous_url = siakng_mahasiswalist_data.json()['previous']
     next_url = siakng_mahasiswalist_data.json()['next']
 
     # page number -1 represent not display back or next button
     previous_page_number = -1
     next_page_number = -1
 
-    if previous_url != None:
-        previous_page_number = csui_helper.instance.current_page_number - 1
-
     if next_url != None:
+        previous_page_number = csui_helper.instance.current_page_number - 1
         next_page_number = csui_helper.instance.current_page_number + 1
 
     friend_list = Friend.objects.all()
@@ -42,7 +57,6 @@ def index(request):
                 "previous_url": previous_page_number}
     html = 'lab_7/lab_7.html'
     return render(request, html, response)
-
 
 def friend_description(request, index):
     index_number = int(index)

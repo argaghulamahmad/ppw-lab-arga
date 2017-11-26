@@ -28,7 +28,7 @@
                         {% endif %}
                     </div>
                     <div id="pagination-button-area">
-                        {% if previous_url != -1 %}
+                        {% if previous_url != -1 or previous_url != 0 %}
                             <span class="pull-left">
                             <button onclick="goNextOrPrevious(value)" value="{{ previous_url }}" id="previous-button"
                                     type="button"
