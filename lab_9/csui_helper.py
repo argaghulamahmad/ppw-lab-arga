@@ -2,6 +2,7 @@ import requests
 
 API_MAHASISWA = "https://api-dev.cs.ui.ac.id/siakngcs/mahasiswa/"
 API_VERIFY_USER = "https://akun.cs.ui.ac.id/oauth/token/verify/"
+API_MAHASISWA_LIST_URL = "https://api.cs.ui.ac.id/siakngcs/mahasiswa-list/"
 
 
 def get_access_token(username, password):
@@ -42,3 +43,9 @@ def get_data_user(access_token, id):
     print("response => ", response.text)
     print("response => ", response.json())
     return response.json()
+
+
+def get_mahasiswa_list(access_token):
+    response = requests.get(API_MAHASISWA_LIST_URL, params={"access_token": access_token, "client_id": get_client_id()})
+    mahasiswa_list = response.json()["results"]
+    return mahasiswa_list

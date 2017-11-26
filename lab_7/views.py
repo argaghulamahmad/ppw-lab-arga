@@ -1,18 +1,24 @@
+import datetime
 import json
-import os
 
+import environ
 from django.core import serializers
+from django.core.paginator import Paginator
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
-from .api_csui_helper.csui_helper import CSUIhelper
 from .models import Friend
 
 response = {}
-csui_helper = CSUIhelper(os.environ.get("SSO_USERNAME"),
-                         os.environ.get("SSO_PASSWORD"))
 
+from lab_9.csui_helper import *
+
+
+now = datetime.datetime.now()
+root = environ.Path(__file__) - 3 # three folder back (/a/b/c/ - 3 = /)
+env = environ.Env(DEBUG=(bool, False),)
+environ.Env.read_env('.env')
 
 @csrf_exempt
 def index(request):
@@ -23,47 +29,29 @@ def index(request):
         response['author'] = "Arga Ghulam Ahmad"
         response['button_logout_session'] = True
 
-        mahasiswa_list = csui_helper.instance.get_mahasiswa_list()
-
+        access_token = request.session['access_token']
+        mahasiswa_list = get_mahasiswa_list(access_token)
         friend_list = Friend.objects.all()
-        response = {"mahasiswa_list": mahasiswa_list, "friend_list": friend_list, "author": "Arga Ghulam Ahmad",
-                    "next_url": 2,
-                    "previous_url": 0}
+        page = request.GET.get('page', 1)
+        paginator = Paginator(mahasiswa_list, 10)
+        mahasiswa_list = paginator.page(page)
+        response['mahasiswa_list'] = mahasiswa_list
+        response['friend_list'] = friend_list
         html = 'lab_7/lab_7.html'
         return render(request, html, response)
     else:
         html = 'lab_9/session/login.html'
         return render(request, html, response)
 
-def index_parameterized(request):
-    csui_helper.instance.set_current_page(int(request.POST.get('buttonUrl')))
-
-    mahasiswa_list = csui_helper.instance.get_mahasiswa_list()
-    siakng_mahasiswalist_data = csui_helper.instance.get_siakng_mahasiswalist_data()
-
-    next_url = siakng_mahasiswalist_data.json()['next']
-
-    # page number -1 represent not display back or next button
-    previous_page_number = -1
-    next_page_number = -1
-
-    if next_url != None:
-        previous_page_number = csui_helper.instance.current_page_number - 1
-        next_page_number = csui_helper.instance.current_page_number + 1
-
-    friend_list = Friend.objects.all()
-    response = {"mahasiswa_list": mahasiswa_list, "friend_list": friend_list, "author": "Arga Ghulam Ahmad",
-                "next_url": next_page_number,
-                "previous_url": previous_page_number}
-    html = 'lab_7/lab_7.html'
-    return render(request, html, response)
-
 def friend_description(request, index):
+    username = env("SSO_USERNAME")
+    password = env("SSO_PASSWORD")
+
     index_number = int(index)
-    siakng_mahasiswalist_data = csui_helper.instance.get_siakng_mahasiswalist_data()
-    npm_mahasiswa = siakng_mahasiswalist_data.json()['results'][index_number]['npm']
-    nama_mahasiswa = siakng_mahasiswalist_data.json()['results'][index_number]['nama']
-    alamat_mahasiswa = siakng_mahasiswalist_data.json()['results'][index_number]['alamat_mhs']
+    siakng_mahasiswalist_data = get_mahasiswa_list(get_access_token(username, password))
+    npm_mahasiswa = siakng_mahasiswalist_data[index_number]['npm']
+    nama_mahasiswa = siakng_mahasiswalist_data[index_number]['nama']
+    alamat_mahasiswa = siakng_mahasiswalist_data[index_number]['alamat_mhs']
     response = {
         "npm": npm_mahasiswa, "nama": nama_mahasiswa, "alamat": alamat_mahasiswa, "author": "Arga Ghulam Ahmad"
     }

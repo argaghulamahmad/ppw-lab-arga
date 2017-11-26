@@ -27,22 +27,26 @@
                             </div>
                         {% endif %}
                     </div>
-                    <div id="pagination-button-area">
-                        {% if previous_url != -1 or previous_url != 0 %}
-                            <span class="pull-left">
-                            <button onclick="goNextOrPrevious(value)" value="{{ previous_url }}" id="previous-button"
-                                    type="button"
-                                    class="btn btn-default">Previous</button>
-                        </span>
+                    <ul class="pagination">
+                        {% if mahasiswa_list.has_previous %}
+                            <li><a href="?page={{ mahasiswa_list.previous_page_number }}">&laquo;</a></li>
+                        {% else %}
+                            <li class="disabled"><span>&laquo;</span></li>
                         {% endif %}
-                        {% if next_url != -1 %}
-                            <span class="pull-right">
-                            <button onclick="goNextOrPrevious(value)" value="{{ next_url }}" id="next-button"
-                                    type="button"
-                                    class="btn btn-default">Next</button>
-                        </span>
+                        {% for i in mahasiswa_list.paginator.page_range %}
+                            {% if mahasiswa_list.number == i %}
+                                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                            {% else %}
+                                <li><a href="?page={{ i }}">{{ i }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if mahasiswa_list.has_next %}
+                            <li><a href="?page={{ mahasiswa_list.next_page_number }}">&raquo;</a></li>
+                        {% else %}
+                            <li class="disabled"><span>&raquo;</span></li>
                         {% endif %}
-                    </div>
+                    </ul>
+
                 </div>
                 <br>
                 <div class="col-lg-4">
@@ -77,15 +81,6 @@
     <script>
         $(document).ready(function () {
         });
-
-        var goNextOrPrevious = function (buttonUrl) {
-            $.ajax({
-                method: "POST",
-                url: "{% url "lab-7:index" %}",
-                data: {buttonUrl: buttonUrl}
-            });
-            window.open('/lab-7', '_self');
-        };
 
         var addFriend = function (nama, npm) {
             $.ajax({
@@ -144,7 +139,7 @@
 
         var getFriendDescription = function (id) {
             console.log(id);
-            window.open('friend-description/'+id+'/', '_self');
+            window.open('friend-description/' + id + '/', '_self');
         };
     </script>
 {% endblock %}
