@@ -3,11 +3,12 @@ import os
 
 from django.test import Client
 from django.test import TestCase
-from django.urls import resolve
+from django.urls import resolve, reverse
 
-from lab_7.api_csui_helper.csui_helper import CSUIhelper
+from lab_7.api_csui_helper.csui_helper import CSUIhelper, env
 from lab_7.models import Friend
 from lab_7.views import index
+from lab_9.csui_helper import get_access_token
 
 now = datetime.datetime.now()
 
@@ -21,13 +22,6 @@ class Lab7UnitTest(TestCase):
         found = resolve('/lab-7/')
         self.assertEqual(found.func, index)
 
-    def test_index_func(self):
-        response = self.client.post('/lab-7/index', {
-            'buttonUrl': 2
-        })
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'lab_7/lab_7.html')
-
     def test_wrong_username_password(self):
         username = "arga.ghulam"
         password = "wrongpassword"
@@ -37,6 +31,38 @@ class Lab7UnitTest(TestCase):
         with self.assertRaises(Exception) as context:
             csui_helper.instance.get_access_token()
         self.assertIn("arga.ghulam", str(context.exception))
+
+    def test_lab7_using_right_template(self):
+        response = Client().get('/lab-7/')
+        self.assertTemplateUsed(response, 'lab_9/session/login.html')
+
+        session = self.client.session
+        session['user_login'] = 'user'
+        session['kode_identitas'] = 'npm'
+
+        self.username = env("SSO_USERNAME")
+        self.password = env("SSO_PASSWORD")
+
+        session['access_token'] = get_access_token(self.username, self.password)
+        session.save()
+        response = self.client.get('/lab-7/')
+        self.assertTemplateUsed(response, 'lab_7/lab_7.html')
+
+    def test_index_parameterized(self):
+        session = self.client.session
+        session['user_login'] = 'user'
+        session['kode_identitas'] = 'npm'
+
+        self.username = env("SSO_USERNAME")
+        self.password = env("SSO_PASSWORD")
+
+        session['access_token'] = get_access_token(self.username, self.password)
+        session.save()
+
+        response = self.client.post(reverse('lab-7:index-parameter'),
+                         {'buttonUrl': 2})
+        self.assertEqual(response.status_code, 200)
+
 
     def test_set_current_page(self):
         csui_helper = CSUIhelper(os.environ.get("SSO_USERNAME"),
