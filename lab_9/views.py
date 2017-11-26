@@ -131,12 +131,17 @@ def del_session_drones(request, id):
 
 
 def clear_session_drones(request):
-    print("# CLEAR session drones")
-    print("before 1 = ", request.session['drones'])
-    del request.session['drones']
+    ssn_key = request.session.keys()
+    if 'drones' in ssn_key:
+        print("# CLEAR session drones")
+        print("before 1 = ", request.session['drones'])
+        del request.session['drones']
 
-    messages.error(request, "Berhasil reset favorite drones")
-    return HttpResponseRedirect(reverse('lab-9:profile'))
+        messages.error(request, "Berhasil reset favorite drones")
+        return HttpResponseRedirect(reverse('lab-9:profile'))
+    else:
+        messages.error(request, "Favorite drones kosong")
+        return HttpResponseRedirect(reverse('lab-9:profile'))
 
 
 ### Opticals
@@ -170,12 +175,17 @@ def del_session_opticals(request, id):
 
 
 def clear_session_opticals(request):
-    print("# CLEAR session opticals")
-    print("before 1 = ", request.session['opticals'])
-    del request.session['opticals']
+    ssn_key = request.session.keys()
+    if 'opticals' in ssn_key:
+        print("# CLEAR session opticals")
+        print("before 1 = ", request.session['opticals'])
+        del request.session['opticals']
 
-    messages.error(request, "Berhasil reset favorite opticals")
-    return HttpResponseRedirect(reverse('lab-9:profile'))
+        messages.error(request, "Berhasil reset favorite opticals")
+        return HttpResponseRedirect(reverse('lab-9:profile'))
+    else:
+        messages.error(request, "Favorite opticals kosong")
+        return HttpResponseRedirect(reverse('lab-9:profile'))
 
 
 ### Soundcards
@@ -209,12 +219,17 @@ def del_session_soundcards(request, id):
 
 
 def clear_session_soundcards(request):
-    print("# CLEAR session soundcards")
-    print("before 1 = ", request.session['soundcards'])
-    del request.session['soundcards']
+    ssn_key = request.session.keys()
+    if 'soundcards' in ssn_key:
+        print("# CLEAR session soundcards")
+        print("before 1 = ", request.session['soundcards'])
+        del request.session['soundcards']
 
-    messages.error(request, "Berhasil reset favorite soundcards")
-    return HttpResponseRedirect(reverse('lab-9:profile'))
+        messages.error(request, "Berhasil reset favorite soundcards")
+        return HttpResponseRedirect(reverse('lab-9:profile'))
+    else:
+        messages.error(request, "Favorite soundcards kosong")
+        return HttpResponseRedirect(reverse('lab-9:profile'))
 
 
 # ======================================================================== #
