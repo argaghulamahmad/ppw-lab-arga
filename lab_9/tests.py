@@ -1,11 +1,13 @@
 import os
 import environ
+import requests
 
 from django.test import Client
 from django.test import TestCase
 from django.urls import resolve
 
-from lab_9.csui_helper import get_access_token, get_client_id, verify_user, get_data_user
+from lab_9.csui_helper import get_access_token, get_client_id, verify_user, get_data_user, API_VERIFY_USER, \
+    API_MAHASISWA
 from lab_9.views import *
 
 root = environ.Path(__file__) - 3 # three folder back (/a/b/c/ - 3 = /)
@@ -34,31 +36,37 @@ class Lab9UnitTest(TestCase):
         self.assertEqual(response.status_code, 302)
 
     # test for enterkomputer api
-    def test_get_enterkomputer_api(self):
-        self.assertJSONNotEqual(str(get_drones().content, encoding='utf8'), {})
-        self.assertJSONNotEqual(str(get_opticals().content, encoding='utf8'), {})
-        self.assertJSONNotEqual(str(get_soundcards().content, encoding='utf8'), {})
+    def test_get_enterkomputer_api1(self):
+        response = requests.get('https://www.enterkomputer.com/api/product/drone.json')
+        self.assertEqual(response.json(), get_drones().json())
 
-    # test for csui_helper.py
-    def test_get_client_id(self):
-        self.assertEqual(get_client_id(), 'X3zNkFmepkdA47ASNMDZRX3Z9gqSU1Lwywu5WepG')
+    def test_get_enterkomputer_api2(self):
+        response = requests.get('https://www.enterkomputer.com/api/product/soundcard.json')
+        self.assertEqual(response.json(), get_soundcards().json())
 
-    def test_verify_user(self):
-        access_token = get_access_token(os.environ.get("SSO_USERNAME"),
-                                        os.environ.get("SSO_PASSWORD"))
+    def test_get_enterkomputer_api3(self):
+        response = requests.get('https://www.enterkomputer.com/api/product/optical.json')
+        self.assertEqual(response.json(), get_opticals().json())
 
-        self.assertNotEqual((verify_user(access_token)), {})
+    # test csui_helper
+    def test_verify_function(self):
+        self.username = env("SSO_USERNAME")
+        self.password = env("SSO_PASSWORD")
+        access_token = get_access_token(self.username, self.password)
+        parameters = {"access_token": access_token, "client_id": get_client_id()}
+        response = requests.get(API_VERIFY_USER, params=parameters)
+        result = verify_user(access_token)
+        self.assertEqual(result, response.json())
 
-    def test_get_data_user(self):
+    def test_get_data_user_function(self):
         self.username = env("SSO_USERNAME")
         self.password = env("SSO_PASSWORD")
         self.npm = env("NPM")
-
-        access_token = get_access_token(os.environ.get("SSO_USERNAME"),
-                                        os.environ.get("SSO_PASSWORD"))
-
+        access_token = get_access_token(self.username, self.password)
+        parameters = {"access_token": access_token, "client_id": get_client_id()}
+        response = requests.get(API_MAHASISWA + self.npm, params=parameters)
         result = get_data_user(access_token, self.npm)
-        self.assertNotEqual(result, {})
+        self.assertEqual(result, response.json())
 
     # test for custom_auth.py
     def test_auth_login_correct(self):
