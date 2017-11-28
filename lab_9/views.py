@@ -44,9 +44,8 @@ def index(request):
 
 def set_data_for_session(res, request):
     response['user_name'] = request.session['user_login']
-    response['access_token'] = request.session['access_token']
     response['user_npm'] = request.session['kode_identitas']
-    response['kode_identitas'] = request.session['kode_identitas']
+    response['access_token'] = request.session['access_token']
     response['role'] = request.session['role']
     response['drones'] = get_drones().json()
     response['opticals'] = get_opticals().json()
