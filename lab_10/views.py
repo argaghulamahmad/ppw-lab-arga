@@ -133,11 +133,14 @@ def set_data_for_session(request):
 def api_search_movie(request, judul, tahun):
     print("API SEARCH MOVIE")
     if judul == "-" and tahun == "-":
+        print("Judul & Tahun Kosong!")
         items = []
     else:
+        print("Film " + judul + " akan dicari")
         search_results = search_movie(judul, tahun)
+        print(search_results)
         items = search_results
-
+    print(items)
     dataJson = json.dumps({"dataku": items})
     mimetype = 'application/json'
     return HttpResponse(dataJson, mimetype)

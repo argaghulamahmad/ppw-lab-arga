@@ -1,49 +1,76 @@
+import math
 import requests
-API_KEY = "http://img.omdbapi.com/?apikey=[29ff3b1e]&"
 
+API_KEY = "29ff3b1e"  # argaghulamahmad@gmail.com ombd account
+
+"""
+    Fungsi untuk mendapatkan data json menggunakan api ombd
+"""
 def search_movie(judul, tahun):
-    print ("METHOD SEARCH MOVIE")
+    print("METHOD SEARCH MOVIE")
+
+    # Generate url untuk mendapatkan data
     get_tahun = ""
     if not tahun == "-":
-        get_tahun = "&y="+tahun
+        get_tahun = "&y=" + tahun
+
     url = "http://www.omdbapi.com/?s=" + judul + get_tahun + "&apikey=" + API_KEY
+    print(url)
+
+    # Ambil data menggunakan url yang telah digenerate
     req = requests.get(url)
     resp = req.json()
+    print(resp)
 
     data_exist = False
     stResponse = resp['Response']
-    print ("RESPONSE => ", stResponse)
+    print("RESPONSE => ", stResponse)
+
+    # Pagination
+    pages = 0
     if stResponse == "True":
         count_results = resp['totalResults']
 
-        #cukup ambil 30 data saja
+        # cukup ambil 30 data saja
         cp = (int(count_results) / 10)
-        if cp > 3: pages = 3
-        elif cp > 0 and cp <= 3: pages = cp
-        else: pages = 1
+        if cp > 3:
+            pages = 3
+        elif cp > 0 and cp <= 3:
+            pages = math.ceil(cp)
+        else:
+            pages = 1
         data_exist = True
+
+    print("Number of pages: " + str(pages))
 
     past_url = url
     all_data = []
+
+    # Salin data ke list all_data
     if data_exist:
-        for page in range(pages):
+        print("DATA EXIST")
+        for page in range(int(pages)):
             page += 1
-            get_page = "&page="+str(page)
-            new_url = past_url + get_page;
+            get_page = "&page=" + str(page)
+            new_url = past_url + get_page
+            print(new_url)
             new_req = requests.get(new_url).json()
             get_datas = new_req['Search']
             for data in get_datas:
                 all_data.append(data)
 
+    print(all_data)
     return all_data
 
+
 def get_detail_movie(id):
-    url = "http://www.omdbapi.com/?i="+id+"&apikey="+API_KEY;
+    url = "http://www.omdbapi.com/?i=" + id + "&apikey=" + API_KEY
     req = requests.get(url)
-    rj = req.json() # dict
+    rj = req.json()  # dict
     my_list = create_json_from_dict(rj)
 
     return my_list
+
 
 def create_json_from_dict(your_dict):
     your_data = {}
@@ -53,6 +80,6 @@ def create_json_from_dict(your_dict):
         if type(cvalue) == list:
             nv = cvalue
         else:
-            nv = cvalue.encode('ascii','ignore')
+            nv = cvalue.encode('ascii', 'ignore')
         your_data[nk] = nv
     return your_data
