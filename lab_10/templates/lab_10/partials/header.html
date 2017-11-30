@@ -1,0 +1,30 @@
+<nav class="navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="{% url 'lab-9:index' %}">Home</a>
+    </div>
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+            <li><a href="{% url 'lab-9:auth_login' %}">Session</a></li>
+            <li><a href="{% url 'lab-9:cookie_login' %}">Cookie</a></li>
+        </ul>
+        <ul id="menu-navbar" class="nav navbar-nav navbar-right">
+            {% if button_logout_session %}
+                <p class="navbar-text">Anda Masuk sebagai : {{ user_name }} {{ user_npm }}</p>
+                <li>
+                    <a href="{% url 'lab-9:auth_logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                </li>
+            {% endif %}
+            {% if button_logout_cookie %}
+                <li>
+                    <a href="{% url 'lab-9:cookie_clear' %}"><span class="glyphicon glyphicon-log-out"></span>
+                        Logout</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
