@@ -5,12 +5,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="{% url 'lab-9:index' %}">Home</a>
+        <a class="navbar-brand" href="{% url 'lab-10:index' %}">Home</a>
     </div>
     <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-            <li><a href="{% url 'lab-9:auth_login' %}">Session</a></li>
-            <li><a href="{% url 'lab-9:cookie_login' %}">Cookie</a></li>
+            <li><a href="{% url 'lab-10:dashboard' %}">Dashboard</a></li>
+            <li><a href="{% url 'lab-10:movie_list' %}">Movie List</a></li>
+            <li><a href="{% url 'lab-10:list_watch_later' %}">Watch Later</a></li>
         </ul>
         <ul id="menu-navbar" class="nav navbar-nav navbar-right">
             {% if button_logout_session %}
