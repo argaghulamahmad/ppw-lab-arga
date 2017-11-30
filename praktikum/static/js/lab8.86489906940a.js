@@ -137,6 +137,7 @@ const render = loginFlag => {
         console.log("LoginFlag: " + loginFlag);
         $('#lab8-main-area').html("");
         $('#lab8-side-area').html("");
+        $('#lab8').html("");
         $('#menu-navbar').html("");
         $('#lab8').append(
             '<div id="login-jumbotron" class="jumbotron">' +
