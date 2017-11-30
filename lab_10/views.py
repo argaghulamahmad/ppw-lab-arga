@@ -14,9 +14,6 @@ from .utils import *
 
 response = {}
 
-
-# Create your views here.
-
 ### USER
 def index(request):
     # print ("#==> masuk index")

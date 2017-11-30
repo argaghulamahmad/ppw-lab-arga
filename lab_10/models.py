@@ -3,7 +3,6 @@ from __future__ import unicode_literals
 
 from django.db import models
 
-# Create your models here.
 class Pengguna(models.Model):
     kode_identitas = models.CharField('Kode Identitas', max_length=20, primary_key=True, )
     nama = models.CharField('Nama', max_length=200)

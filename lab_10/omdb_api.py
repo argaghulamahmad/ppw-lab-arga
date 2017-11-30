@@ -62,7 +62,9 @@ def search_movie(judul, tahun):
     print(all_data)
     return all_data
 
-
+"""
+    Fungsi untuk mendapatkan informasi mengenai detail sebuah film
+"""
 def get_detail_movie(id):
     url = "http://www.omdbapi.com/?i=" + id + "&apikey=" + API_KEY
     req = requests.get(url)
@@ -71,7 +73,9 @@ def get_detail_movie(id):
 
     return my_list
 
-
+"""
+    Fungsi untuk men'generate' data json dari dict
+"""
 def create_json_from_dict(your_dict):
     your_data = {}
     for key in your_dict:
