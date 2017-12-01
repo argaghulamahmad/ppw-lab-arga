@@ -3,6 +3,7 @@ from django.urls import resolve, reverse
 
 from lab_10.models import Pengguna
 from lab_10.omdb_api import search_movie, get_detail_movie
+from lab_10.utils import get_list_movie_from_api
 from lab_10.views import index
 
 
@@ -27,6 +28,12 @@ class Lab10UnitTest(TestCase):
     def test_get_detail_movie(self):
         movie_detail = get_detail_movie('tt1985966')
         self.assertEqual(movie_detail['title'], b'Cloudy with a Chance of Meatballs 2')
+
+    # utils.py test
+    def test_get_list_movie_from_api(self):
+        my_list = ['tt1985966']
+        list_movies = get_list_movie_from_api(my_list)
+        self.assertEqual(list_movies[0]['title'], b'Cloudy with a Chance of Meatballs 2')
 
     # views.py test
     def setUp(self):
@@ -57,6 +64,7 @@ class Lab10UnitTest(TestCase):
         session['user_login'] = 'arga.ghulam'
         session['kode_identitas'] = '1606821601'
         session['role'] = 'mahasiswa'
+        session['movies'] = ['tt1985966', 'tt1981128']
         session.save()
 
         response = self.client.get(reverse('lab-10:dashboard'))
@@ -109,7 +117,17 @@ class Lab10UnitTest(TestCase):
         response_post = self.client.post(reverse('lab-10:api_search_movie', kwargs={'judul': '-', 'tahun': '-'}))
         self.assertEqual(response_post.status_code, 200)
 
-    def test_list_watch_later(self):
+    def test_list_watch_later_case1(self):
+        response_post = self.client.post(reverse('lab-10:list_watch_later'))
+        self.assertEqual(response_post.status_code, 200)
+
+    def test_list_watch_later_case2(self):
+        session = self.client.session
+        session['user_login'] = 'arga.ghulam'
+        session['kode_identitas'] = '1606821601'
+        session['role'] = 'mahasiswa'
+        session.save()
+
         response_post = self.client.post(reverse('lab-10:list_watch_later'))
         self.assertEqual(response_post.status_code, 200)
 
