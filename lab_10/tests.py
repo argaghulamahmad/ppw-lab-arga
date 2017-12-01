@@ -42,10 +42,35 @@ class Lab10UnitTest(TestCase):
         session = self.client.session
         session['user_login'] = 'arga.ghulam'
         session['kode_identitas'] = '1606821601'
+        session['role'] = 'mahasiswa'
         session.save()
 
         response = self.client.get('/lab-10/')
         self.assertEqual(response.status_code, 302)
+
+    def test_dashboard_case1(self):
+        response = self.client.get(reverse('lab-10:dashboard'))
+        self.assertEqual(response.status_code, 302)
+
+    def test_dashboard_case2(self):
+        session = self.client.session
+        session['user_login'] = 'arga.ghulam'
+        session['kode_identitas'] = '1606821601'
+        session['role'] = 'mahasiswa'
+        session.save()
+
+        response = self.client.get(reverse('lab-10:dashboard'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_dashboard_case3(self):
+        session = self.client.session
+        session['user_login'] = 'arga.cerdas'
+        session['kode_identitas'] = '1606821998'
+        session['role'] = 'mahasiswa'
+        session.save()
+
+        response = self.client.get(reverse('lab-10:dashboard'))
+        self.assertEqual(response.status_code, 200)
 
     def test_movie_list(self):
         response = self.client.post('/lab-10/movie/list/')
