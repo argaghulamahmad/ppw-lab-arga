@@ -756,7 +756,9 @@ Untuk membantu kalian dalam mengerjakan challenge, telah disiapkan beberapa bari
         url(r'^del_session_item/(?P<key>\w+)/(?P<id>\d+)/$', del_session_item, name='del_session_item'),
         url(r'^clear_session_item/(?P<key>\w+)/$', clear_session_item, name='clear_session_item'),
     ```
+
 ## Checklist
+
 ### Mandatory 
 
 1. Session: Login & Logout
