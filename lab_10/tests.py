@@ -1,7 +1,7 @@
 from django.test import TestCase, Client
 from django.urls import resolve, reverse
 
-from lab_10.models import Pengguna
+from lab_10.models import Pengguna, MovieKu
 from lab_10.omdb_api import search_movie, get_detail_movie
 from lab_10.utils import get_list_movie_from_api
 from lab_10.views import index
@@ -40,6 +40,11 @@ class Lab10UnitTest(TestCase):
         self.user = Pengguna.objects.create(
             kode_identitas='1606821601',
             nama="arga.ghulam",
+        )
+
+        self.movie = MovieKu.objects.create(
+            pengguna=self.user,
+            kode_movie='tt1839578'
         )
 
     def test_lab_10_using_right_template(self):
@@ -102,6 +107,7 @@ class Lab10UnitTest(TestCase):
         self.assertEqual(response.status_code, 302)
 
     def test_add_watch_later_case3(self):
+        response = self.client.post(reverse('lab-10:add_watch_later', kwargs={'id': 'tt2140479'}))
         response = self.client.post(reverse('lab-10:add_watch_later', kwargs={'id': 'tt1981128'}))
         self.assertEqual(response.status_code, 302)
 
@@ -135,7 +141,8 @@ class Lab10UnitTest(TestCase):
         session['kode_identitas'] = '1606821601'
         session.save()
 
-        response_post = self.client.post(reverse('lab-10:api_search_movie', kwargs={'judul': '6 Days', 'tahun': '2017'}))
+        response_post = self.client.post(
+            reverse('lab-10:api_search_movie', kwargs={'judul': '6 Days', 'tahun': '2017'}))
         self.assertEqual(response_post.status_code, 200)
 
     def test_api_search_movie_case2(self):
@@ -160,4 +167,3 @@ class Lab10UnitTest(TestCase):
 
         response_post = self.client.post(reverse('lab-10:list_watch_later'))
         self.assertEqual(response_post.status_code, 200)
-
