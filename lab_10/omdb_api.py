@@ -35,10 +35,8 @@ def search_movie(judul, tahun):
         cp = (int(count_results) / 10)
         if cp > 3:
             pages = 3
-        elif cp > 0 and cp <= 3:
+        elif cp >= 0 and cp <= 3:
             pages = math.ceil(cp)
-        else:
-            pages = 1
         data_exist = True
 
     print("Number of pages: " + str(pages))
@@ -59,6 +57,7 @@ def search_movie(judul, tahun):
             for data in get_datas:
                 all_data.append(data)
 
+    print("ALL DATA")
     print(all_data)
     return all_data
 
@@ -71,6 +70,8 @@ def get_detail_movie(id):
     rj = req.json()  # dict
     my_list = create_json_from_dict(rj)
 
+    print("MY LIST")
+    print(my_list)
     return my_list
 
 """
