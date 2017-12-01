@@ -80,6 +80,36 @@ class Lab10UnitTest(TestCase):
         response = self.client.get(reverse('lab-10:dashboard'))
         self.assertEqual(response.status_code, 200)
 
+    def test_add_watch_later_case1(self):
+        session = self.client.session
+        session['user_login'] = 'arga.ghulam'
+        session['kode_identitas'] = '1606821601'
+        session['role'] = 'mahasiswa'
+        session.save()
+
+        response = self.client.post(reverse('lab-10:add_watch_later', kwargs={'id': 'tt1981128'}))
+        self.assertEqual(response.status_code, 302)
+
+    def test_add_watch_later_case2(self):
+        session = self.client.session
+        session['user_login'] = 'arga.ghulam'
+        session['kode_identitas'] = '1606821601'
+        session['role'] = 'mahasiswa'
+        session.save()
+
+        response = self.client.post(reverse('lab-10:add_watch_later', kwargs={'id': 'tt1981128'}))
+        response = self.client.post(reverse('lab-10:add_watch_later', kwargs={'id': 'tt1981128'}))
+        self.assertEqual(response.status_code, 302)
+
+    def test_add_watch_later_case3(self):
+        response = self.client.post(reverse('lab-10:add_watch_later', kwargs={'id': 'tt1981128'}))
+        self.assertEqual(response.status_code, 302)
+
+    def test_add_watch_later_case4(self):
+        response = self.client.post(reverse('lab-10:add_watch_later', kwargs={'id': 'tt1981128'}))
+        response = self.client.post(reverse('lab-10:add_watch_later', kwargs={'id': 'tt1981128'}))
+        self.assertEqual(response.status_code, 302)
+
     def test_movie_list(self):
         response = self.client.post('/lab-10/movie/list/')
         self.assertEqual(response.status_code, 200)
