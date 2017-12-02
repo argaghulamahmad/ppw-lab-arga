@@ -118,7 +118,8 @@ class Lab10UnitTest(TestCase):
 
     def test_movie_list(self):
         response = self.client.post('/lab-10/movie/list/')
-        self.assertEqual(response.status_code, 200)
+        response_post = self.client.get(reverse('lab-10:movie_list'), {'judul': 'It', 'tahun': '2017'})
+        self.assertEqual(response_post.status_code, 200)
 
     def test_movie_detail_case1(self):
         response = self.client.post(reverse('lab-10:movie_detail', kwargs={'id': 'tt1981128'}))
